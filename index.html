@@ -10,6 +10,9 @@
   <!-- Swiper.js JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+  <!-- MOVED: Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <!-- NEW: Google Fonts Import -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -282,6 +285,7 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
    <script>
     // Configure Tailwind to use the brand colors
     tailwind.config = {
+      darkMode: 'class', // NEW: Enable dark mode
       theme: {
         extend: {
           
@@ -313,11 +317,27 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
         }
     
   </script>
+
+  <!-- NEW: Dark Mode Initializer (prevents FOUC) -->
+  <script>
+    (function() {
+      const htmlEl = document.documentElement;
+      const storedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = storedTheme ? storedTheme : (systemPrefersDark ? 'dark' : 'light');
+      
+      if (initialTheme === 'dark') {
+        htmlEl.classList.add('dark');
+      } else {
+        htmlEl.classList.remove('dark');
+      }
+    })();
+  </script>
 </head>
-<body class="font-sans bg-blueprint text-brand-text overflow-x-hidden">
+<body class="font-sans bg-blueprint text-brand-text overflow-x-hidden dark:bg-black dark:text-gray-200">
 
   <!-- Navigation -->
-  <nav id="navbar" class="fixed top-0 w-full bg-brand-secondary/95 backdrop-blur-md shadow-2xl z-50 transition-all duration-300 py-4 px-6 md:px-12">
+  <nav id="navbar" class="fixed top-0 w-full bg-brand-secondary/95 backdrop-blur-md shadow-2xl z-50 transition-all duration-300 py-4 px-6 md:px-12 dark:bg-black/95">
     <div class="nav-container flex justify-between items-center max-w-7xl mx-auto">
       <div class="nav-logo text-[#F4F4F4] text-2xl font-bold tracking-wider font-heading">OM ENTERPRISES</div>
       
@@ -335,9 +355,15 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
           <li><a href="#contact" class="text-white font-medium relative transition-colors duration-300 hover:text-brand-light after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-brand-light after:transition-all after:duration-300 hover:after:w-full">Contact</a></li>
         </ul>
         
+        <!-- NEW: Dark Mode Toggle -->
+        <button id="themeToggle" class="text-white text-xl w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 hover:bg-white/10" title="Toggle light/dark mode">
+          <i class="fas fa-moon" id="themeIconMoon"></i>
+          <i class="fas fa-sun hidden" id="themeIconSun"></i>
+        </button>
+
         <!-- Download Button (Desktop) -->
         <a href="company_brochure.pdf" download="OM-Enterprises-Brochure.pdf" 
-           class="hidden md:inline-block bg-brand-light text-white py-2 px-5 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:bg-brand-dark text-sm"
+           class="hidden md:inline-block bg-brand-light text-white py-2 px-5 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:bg-brand-dark text-sm hover:shadow-brand-light/50"
            title="Download our company brochure">
            Brochure
         </a>
@@ -411,7 +437,7 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     <a 
       href="#" 
       id="heroQuoteButton" 
-      class="inline-block bg-gradient-to-r from-[#1E3A8A] to-[#0F275C] text-white py-4 px-10 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      class="inline-block bg-gradient-to-r from-[#1E3A8A] to-[#0F275C] text-white py-4 px-10 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-400/50">
       Get A Quote
     </a>
   </div>
@@ -420,12 +446,12 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
   <!-- About Section -->
   <section id="about" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">About Us</h2>
-    <div class="about-content bg-white rounded-2xl shadow-xl my-10 mx-auto p-6 md:p-12 grid md:grid-cols-2 gap-12 items-center">
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">About Us</h2>
+    <div class="about-content bg-white rounded-2xl shadow-xl my-10 mx-auto p-6 md:p-12 grid md:grid-cols-2 gap-12 items-center dark:bg-gray-900">
       <div class="about-text scroll-animate fade-in-left">
-        <h3 class="text-brand-primary text-3xl mb-4 font-heading">Building Excellence Since Years</h3>
-        <p class="text-lg text-gray-600 mb-4 leading-relaxed">We are a professional excavation and construction company providing comprehensive site preparation, foundation digging, and land clearing services for construction projects across India.</p>
-        <p class="text-lg text-gray-600 mb-4 leading-relaxed">Our mission is to achieve excellence through world-class practices and international quality standards, while ensuring the highest levels of safety and efficiency in every project we undertake.</p>
+        <h3 class="text-brand-primary text-3xl mb-4 font-heading dark:text-white">Building Excellence Since Years</h3>
+        <p class="text-lg text-gray-600 mb-4 leading-relaxed dark:text-gray-300">We are a professional excavation and construction company providing comprehensive site preparation, foundation digging, and land clearing services for construction projects across India.</p>
+        <p class="text-lg text-gray-600 mb-4 leading-relaxed dark:text-gray-300">Our mission is to achieve excellence through world-class practices and international quality standards, while ensuring the highest levels of safety and efficiency in every project we undertake.</p>
       </div>
       <div class="stats-grid grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8 scroll-animate fade-in-right delay-100">
         <div class="stat-card bg-gradient-to-r from-brand-light to-brand-dark p-6 rounded-2xl text-center text-white shadow-lg transition-transform duration-300 hover:-translate-y-1">
@@ -447,8 +473,8 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
   
   <!-- Timeline Section -->
   <section id="timeline" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Company Timeline</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">Our 20+ Year Journey to Excellence</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Company Timeline</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Our 20+ Year Journey to Excellence</p>
     <div class="timeline-container relative mt-10 max-w-4xl mx-auto">
         <!-- Central Line -->
         <div class="timeline-line absolute left-1/2 top-0 w-1 bg-brand-light h-full -translate-x-1/2"></div>
@@ -456,56 +482,56 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
         <!-- Timeline Item 1 (Left) -->
         <div class="timeline-item relative w-full flex justify-start my-6 scroll-animate fade-in-right">
             <div class="timeline-content-container w-1/2 pr-8 text-right">
-                <div class="timeline-content bg-white p-6 rounded-2xl shadow-lg border-r-4 border-brand-light transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <h3 class="text-xl font-semibold text-brand-primary mb-2 font-heading">2004 - The Beginning</h3>
-                    <p class="text-gray-600">OM Enterprises was founded by Mr. Ashok Pal on Jan 25th, 2004, with a vision to provide reliable excavation and civil contracting services in Mumbai.</p>
+                <div class="timeline-content bg-white p-6 rounded-2xl shadow-lg border-r-4 border-brand-light transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 dark:bg-gray-900">
+                    <h3 class="text-xl font-semibold text-brand-primary mb-2 font-heading dark:text-white">2004 - The Beginning</h3>
+                    <p class="text-gray-600 dark:text-gray-300">OM Enterprises was founded by Mr. Ashok Pal on Jan 25th, 2004, with a vision to provide reliable excavation and civil contracting services in Mumbai.</p>
                 </div>
             </div>
-            <div class="timeline-dot absolute left-1/2 top-1/2 w-6 h-6 bg-brand-dark rounded-full -translate-x-1/2 -translate-y-1/2 border-4 border-white shadow-md"></div>
+            <div class="timeline-dot absolute left-1/2 top-1/2 w-6 h-6 bg-brand-dark rounded-full -translate-x-1/2 -translate-y-1/2 border-4 border-white shadow-md dark:border-gray-900"></div>
         </div>
 
         <!-- Timeline Item 2 (Right) -->
         <div class="timeline-item relative w-full flex justify-end my-6 scroll-animate fade-in-left">
             <div class="timeline-content-container w-1/2 pl-8 text-left">
-                <div class="timeline-content bg-white p-6 rounded-2xl shadow-lg border-l-4 border-brand-light transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <h3 class="text-xl font-semibold text-brand-primary mb-2 font-heading">2010 - Building Reputation</h3>
-                    <p class="text-gray-600">Successfully completed foundational projects for major clients like B.E. Billimoria & Co. Ltd., building a reputation for reliability and quality.</p>
+                <div class="timeline-content bg-white p-6 rounded-2xl shadow-lg border-l-4 border-brand-light transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 dark:bg-gray-900">
+                    <h3 class="text-xl font-semibold text-brand-primary mb-2 font-heading dark:text-white">2010 - Building Reputation</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Successfully completed foundational projects for major clients like B.E. Billimoria & Co. Ltd., building a reputation for reliability and quality.</p>
                 </div>
             </div>
-            <div class="timeline-dot absolute left-1/2 top-1/2 w-6 h-6 bg-brand-dark rounded-full -translate-x-1/2 -translate-y-1/2 border-4 border-white shadow-md"></div>
+            <div class="timeline-dot absolute left-1/2 top-1/2 w-6 h-6 bg-brand-dark rounded-full -translate-x-1/2 -translate-y-1/2 border-4 border-white shadow-md dark:border-gray-900"></div>
         </div>
 
         <!-- Timeline Item 3 (Left) -->
         <div class="timeline-item relative w-full flex justify-start my-6 scroll-animate fade-in-right">
             <div class="timeline-content-container w-1/2 pr-8 text-right">
-                <div class="timeline-content bg-white p-6 rounded-2xl shadow-lg border-r-4 border-brand-light transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <h3 class="text-xl font-semibold text-brand-primary mb-2 font-heading">2015 - Scaling Operations</h3>
-                    <p class="text-gray-600">Expanded the fleet with modern piling rigs and heavy machinery, taking on complex, large-scale projects like the Welspun Group site in Thane.</p>
+                <div class="timeline-content bg-white p-6 rounded-2xl shadow-lg border-r-4 border-brand-light transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 dark:bg-gray-900">
+                    <h3 class="text-xl font-semibold text-brand-primary mb-2 font-heading dark:text-white">2015 - Scaling Operations</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Expanded the fleet with modern piling rigs and heavy machinery, taking on complex, large-scale projects like the Welspun Group site in Thane.</p>
                 </div>
             </div>
-            <div class="timeline-dot absolute left-1/2 top-1/2 w-6 h-6 bg-brand-dark rounded-full -translate-x-1/2 -translate-y-1/2 border-4 border-white shadow-md"></div>
+            <div class="timeline-dot absolute left-1/2 top-1/2 w-6 h-6 bg-brand-dark rounded-full -translate-x-1/2 -translate-y-1/2 border-4 border-white shadow-md dark:border-gray-900"></div>
         </div>
 
         <!-- Timeline Item 4 (Right) -->
         <div class="timeline-item relative w-full flex justify-end my-6 scroll-animate fade-in-left">
             <div class="timeline-content-container w-1/2 pl-8 text-left">
-                <div class="timeline-content bg-white p-6 rounded-2xl shadow-lg border-l-4 border-brand-light transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <h3 class="text-xl font-semibold text-brand-primary mb-2 font-heading">2020 - Landmark Projects</h3>
-                    <p class="text-gray-600">Became a trusted partner for top-tier developers, executing major projects for HCC (Hindustan Construction Company) and Prestige Estates Projects Ltd.</p>
+                <div class="timeline-content bg-white p-6 rounded-2xl shadow-lg border-l-4 border-brand-light transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 dark:bg-gray-900">
+                    <h3 class="text-xl font-semibold text-brand-primary mb-2 font-heading dark:text-white">2020 - Landmark Projects</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Became a trusted partner for top-tier developers, executing major projects for HCC (Hindustan Construction Company) and Prestige Estates Projects Ltd.</p>
                 </div>
             </div>
-            <div class="timeline-dot absolute left-1/2 top-1/2 w-6 h-6 bg-brand-dark rounded-full -translate-x-1/2 -translate-y-1/2 border-4 border-white shadow-md"></div>
+            <div class="timeline-dot absolute left-1/2 top-1/2 w-6 h-6 bg-brand-dark rounded-full -translate-x-1/2 -translate-y-1/2 border-4 border-white shadow-md dark:border-gray-900"></div>
         </div>
         
         <!-- Timeline Item 5 (Left) -->
         <div class="timeline-item relative w-full flex justify-start my-6 scroll-animate fade-in-right">
             <div class="timeline-content-container w-1/2 pr-8 text-right">
-                <div class="timeline-content bg-white p-6 rounded-2xl shadow-lg border-r-4 border-brand-light transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                    <h3 class="text-xl font-semibold text-brand-primary mb-2 font-heading">2024+ (Today) - Industry Leader</h3>
-                    <p class="text-gray-600"> Today, our 20+ years of experience are fully engaged, managing major 'In Progress' sites for industry titans like L&T Construction and Raymond Ltd.</p>
+                <div class="timeline-content bg-white p-6 rounded-2xl shadow-lg border-r-4 border-brand-light transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 dark:bg-gray-900">
+                    <h3 class="text-xl font-semibold text-brand-primary mb-2 font-heading dark:text-white">2024+ (Today) - Industry Leader</h3>
+                    <p class="text-gray-600 dark:text-gray-300"> Today, our 20+ years of experience are fully engaged, managing major 'In Progress' sites for industry titans like L&T Construction and Raymond Ltd.</p>
                 </div>
             </div>
-            <div class="timeline-dot absolute left-1/2 top-1/2 w-6 h-6 bg-brand-dark rounded-full -translate-x-1/2 -translate-y-1/2 border-4 border-white shadow-md"></div>
+            <div class="timeline-dot absolute left-1/2 top-1/2 w-6 h-6 bg-brand-dark rounded-full -translate-x-1/2 -translate-y-1/2 border-4 border-white shadow-md dark:border-gray-900"></div>
         </div>
 
     </div>
@@ -513,14 +539,15 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
   <!-- Client Logos Section -->
   <!-- Client Logos Section -->
-<section id="clients" class="section py-20 px-5 bg-white">
+<section id="clients" class="section py-20 px-5 bg-white dark:bg-gray-900">
   <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold 
              font-heading uppercase tracking-wider
              after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 
-             after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">
+             after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded
+             dark:text-white">
     Trusted By
   </h2>
-  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">
+  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">
     We are proud to partner with industry-leading developers and corporations
   </p>
 
@@ -528,40 +555,40 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     <div class="logo-carousel-track flex space-x-20 px-10">
       
       <!-- Logos Set 1 -->
-      <img src="lodha.png" alt="Lodha Group Logo" class="client-logo h-16 object-contain" title="Lodha Group">
-      <img src="prestige.png" alt="Prestige Group Logo" class="client-logo h-16 object-contain" title="Prestige Group">
-      <img src="welspun.png" alt="Welspun Realty Logo" class="client-logo h-16 object-contain" title="Welspun Realty">
-      <img src="piramal.png" alt="Piramal Realty Logo" class="client-logo h-16 object-contain" title="Piramal Realty">
-      <img src="raymond.png" alt="Raymond Realty Logo" class="client-logo h-16 object-contain" title="Raymond Realty">
-      <img src="billi.png" alt="B.E. Billimoria Logo" class="client-logo h-16 object-contain" title="B.E. Billimoria">
-      <img src="Breach.png" alt="Breach Candy Hospital Logo" class="client-logo h-16 object-contain" title="Breach Candy Hospital">
-      <img src="L&T.png" alt="L&T Construction Logo" class="client-logo h-16 object-contain" title="L&T Construction">
-      <img src="hcc.png" alt="Shapoorji Pallonji Logo" class="client-logo h-16 object-contain" title="HCC">
-      <img src="prime.png" alt="HCC Logo" class="client-logo h-16 object-contain" title="prime focus">
-      <img src="rna.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="Mahindra">
-      <img src="tryksha.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="tryksha">
-     <img src="jp.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="">
-     <img src="data.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="">
-     <img src="knight.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="">
-     <img src="Gleeds.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="">
+      <img src="lodha.png" alt="Lodha Group Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Lodha Group">
+      <img src="prestige.png" alt="Prestige Group Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Prestige Group">
+      <img src="welspun.png" alt="Welspun Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Welspun Realty">
+      <img src="piramal.png" alt="Piramal Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Piramal Realty">
+      <img src="raymond.png" alt="Raymond Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Raymond Realty">
+      <img src="billi.png" alt="B.E. Billimoria Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="B.E. Billimoria">
+      <img src="Breach.png" alt="Breach Candy Hospital Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Breach Candy Hospital">
+      <img src="L&T.png" alt="L&T Construction Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="L&T Construction">
+      <img src="hcc.png" alt="Shapoorji Pallonji Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="HCC">
+      <img src="prime.png" alt="HCC Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="prime focus">
+      <img src="rna.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="RNA">
+      <img src="tryksha.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="tryksha">
+     <img src="jp.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
+     <img src="data.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
+     <img src="knight.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
+     <img src="Gleeds.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
      
       <!-- Duplicate logos for seamless infinite scroll -->
-      <img src="lodha.png" alt="Lodha Group Logo" class="client-logo h-16 object-contain">
-      <img src="prestige.png" alt="Prestige Group Logo" class="client-logo h-16 object-contain">
-      <img src="welspun.png" alt="Welspun Realty Logo" class="client-logo h-16 object-contain">
-      <img src="piramal.png" alt="Piramal Realty Logo" class="client-logo h-16 object-contain">
-      <img src="raymond.png" alt="Raymond Realty Logo" class="client-logo h-16 object-contain">
-      <img src="billi.png" alt="B.E. Billimoria Logo" class="client-logo h-16 object-contain">
-      <img src="Breach.png" alt="Breach Candy Hospital Logo" class="client-logo h-16 object-contain">
-      <img src="L&T.png" alt="L&T Construction Logo" class="client-logo h-16 object-contain">
-      <img src="hcc.png" alt="Shapoorji Pallonji Logo" class="client-logo h-16 object-contain">
-      <img src="prime.png" alt="HCC Logo" class="client-logo h-16 object-contain">
-      <img src="rna.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="RNA">
-      <img src="tryksha.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="tryksha">
-      <img src="jp.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="">
-     <img src="data.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="">
-     <img src="knight.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="">
-     <img src="Gleeds.png" alt="Mahindra Logo" class="client-logo h-16 object-contain" title="">
+      <img src="lodha.png" alt="Lodha Group Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
+      <img src="prestige.png" alt="Prestige Group Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
+      <img src="welspun.png" alt="Welspun Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
+      <img src="piramal.png" alt="Piramal Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
+      <img src="raymond.png" alt="Raymond Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
+      <img src="billi.png" alt="B.E. Billimoria Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
+      <img src="Breach.png" alt="Breach Candy Hospital Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
+      <img src="L&T.png" alt="L&T Construction Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
+      <img src="hcc.png" alt="Shapoorji Pallonji Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
+      <img src="prime.png" alt="HCC Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
+      <img src="rna.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="RNA">
+      <img src="tryksha.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="tryksha">
+      <img src="jp.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
+     <img src="data.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
+     <img src="knight.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
+     <img src="Gleeds.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
      
     </div>
   </div>
@@ -601,60 +628,70 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
 
   <!-- Services Section -->
-<section id="services" class="section py-20 bg-industrial-texture">
+<section id="services" class="section py-20 bg-industrial-texture dark:bg-black">
   <div class="max-w-7xl mx-auto px-5"> <!-- NEW: Inner container for content alignment -->
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Our Services</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">Comprehensive construction and excavation solutions tailored to your project needs</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Our Services</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Comprehensive construction and excavation solutions tailored to your project needs</p>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- REMOVED Font Awesome Link from here -->
 
 <!-- Services Section -->
-<section id="services" class="section py-20 px-5 max-w-7xl mx-auto">
-  <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Our Services</h2>
-  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">Comprehensive construction and excavation solutions tailored to your project needs</p>
+<!-- DELETED a duplicate <section>, <h2>, and <p> tag here that was breaking the layout -->
 
   <div class="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
     <!-- Civil Engineering -->
-    <div class="service-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100">
-      <div class="service-icon text-5xl mb-5 text-brand-primary"><i class="fas fa-building"></i></div>
-      <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading">Civil Engineering</h3>
-      <p class="text-gray-600 leading-relaxed">Complete civil engineering solutions for residential and commercial projects</p>
+    <div class="service-card group bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100 dark:bg-gray-900">
+      <div class="service-icon text-5xl mb-5 text-brand-primary transition-colors duration-300 group-hover:text-brand-light dark:text-white">
+        <i class="fas fa-building inline-block transition-all duration-300 group-hover:scale-110 group-hover:rotate-[12deg]"></i>
+      </div>
+      <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading dark:text-white">Civil Engineering</h3>
+      <p class="text-gray-600 leading-relaxed dark:text-gray-300">Complete civil engineering solutions for residential and commercial projects</p>
     </div>
 
     <!-- Excavation -->
-    <div class="service-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200">
-      <div class="service-icon text-5xl mb-5 text-brand-primary"><i class="fas fa-dumpster-fire"></i></div>
-      <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading">Excavation</h3>
-      <p class="text-gray-600 leading-relaxed">Professional excavation services with modern equipment and skilled operators</p>
+    <div class="service-card group bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200 dark:bg-gray-900">
+      <div class="service-icon text-5xl mb-5 text-brand-primary transition-colors duration-300 group-hover:text-brand-light dark:text-white">
+        <i class="fas fa-dumpster-fire inline-block transition-all duration-300 group-hover:scale-110 group-hover:rotate-[12deg]"></i>
+      </div>
+      <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading dark:text-white">Excavation</h3>
+      <p class="text-gray-600 leading-relaxed dark:text-gray-300">Professional excavation services with modern equipment and skilled operators</p>
     </div>
 
     <!-- Foundation Work -->
-    <div class="service-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300">
-      <div class="service-icon text-5xl mb-5 text-brand-primary"><i class="fas fa-shapes"></i></div>
-      <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading">Foundation Work</h3>
-      <p class="text-gray-600 leading-relaxed">Deep foundation, piling, and anchoring services for structural stability</p>
+    <div class="service-card group bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300 dark:bg-gray-900">
+      <div class="service-icon text-5xl mb-5 text-brand-primary transition-colors duration-300 group-hover:text-brand-light dark:text-white">
+        <i class="fas fa-shapes inline-block transition-all duration-300 group-hover:scale-110 group-hover:rotate-[12deg]"></i>
+      </div>
+      <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading dark:text-white">Foundation Work</h3>
+      <p class="text-gray-600 leading-relaxed dark:text-gray-300">Deep foundation, piling, and anchoring services for structural stability</p>
     </div>
 
     <!-- Road Construction -->
-    <div class="service-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100">
-      <div class="service-icon text-5xl mb-5 text-brand-primary"><i class="fas fa-road"></i></div>
-      <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading">Road Construction</h3>
-      <p class="text-gray-600 leading-relaxed">Quality road work including excavation, grading, and surface preparation</p>
+    <div class="service-card group bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100 dark:bg-gray-900">
+      <div class="service-icon text-5xl mb-5 text-brand-primary transition-colors duration-300 group-hover:text-brand-light dark:text-white">
+        <i class="fas fa-road inline-block transition-all duration-300 group-hover:scale-110 group-hover:rotate-[12deg]"></i>
+      </div>
+      <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading dark:text-white">Road Construction</h3>
+      <p class="text-gray-600 leading-relaxed dark:text-gray-300">Quality road work including excavation, grading, and surface preparation</p>
     </div>
 
     <!-- Gabion Work -->
-  <div class="service-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200">
-  <div class="service-icon text-5xl mb-5 text-brand-primary"><i class="fas fa-mountain"></i></div>
-  <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading">Gabion Work</h3>
-  <p class="text-gray-600 leading-relaxed">Wire-mesh baskets (gabions) filled with rock for slope stability and erosion control.</p>
+  <div class="service-card group bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200 dark:bg-gray-900">
+  <div class="service-icon text-5xl mb-5 text-brand-primary transition-colors duration-300 group-hover:text-brand-light dark:text-white">
+    <i class="fas fa-mountain inline-block transition-all duration-300 group-hover:scale-110 group-hover:rotate-[12deg]"></i>
+  </div>
+  <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading dark:text-white">Gabion Work</h3>
+  <p class="text-gray-600 leading-relaxed dark:text-gray-300">Wire-mesh baskets (gabions) filled with rock for slope stability and erosion control.</p>
 </div>
 
 
     <!-- Shotcreting -->
-    <div class="service-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300">
-      <div class="service-icon text-5xl mb-5 text-brand-primary"><i class="fas fa-wrench"></i></div>
-      <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading">Shotcreting</h3>
-      <p class="text-gray-600 leading-relaxed">Specialized shotcreting work for slopes and retaining structures</p>
+    <div class="service-card group bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 border-t-4 border-brand-light hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300 dark:bg-gray-900">
+      <div class="service-icon text-5xl mb-5 text-brand-primary transition-colors duration-300 group-hover:text-brand-light dark:text-white">
+        <i class="fas fa-wrench inline-block transition-all duration-3D00 group-hover:scale-110 group-hover:rotate-[12deg]"></i>
+      </div>
+      <h3 class="text-brand-primary mb-4 text-2xl font-semibold font-heading dark:text-white">Shotcreting</h3>
+      <p class="text-gray-600 leading-relaxed dark:text-gray-300">Specialized shotcreting work for slopes and retaining structures</p>
     </div>
   </div>
  </div> <!-- NEW: Closing inner container -->
@@ -663,12 +700,12 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
   <!-- Projects Section -->
   <section id="projects" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Our Projects</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">Trusted by leading developers and builders across India</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Our Projects</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Trusted by leading developers and builders across India</p>
     <div class="equipment-gallery grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
       
       <!-- Project 1 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-100"
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-100 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="WhatsApp Image 2025-04-26 at 8.08.22 AM.jpeg,
                   WhatsApp Image 2021-12-06 at 10.34.01.jpeg,
@@ -690,8 +727,13 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
        class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
        onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Image+Error'; this.onerror=null;">
 
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">Prestige Mulund Project</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Prestige Mulund Project</p>
   <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
         
 </div>
@@ -699,7 +741,7 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
 
       <!-- Project 2 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-200"
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-200 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="WhatsApp Image 2024-05-17 at 9.51.24 AM.jpeg,
                   WhatsApp Image 2024-05-21 at 8.58.14 AM.jpeg,
@@ -717,8 +759,13 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
        class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
        onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Image+Error'; this.onerror=null;">
 
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">Welspun Thane</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Welspun Thane</p>
 <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
       
 </div>
@@ -726,7 +773,7 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
 
       <!-- Project 3 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-300"
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-300 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="IMG-20190623-WA0016.jpg,
                   IMG-20190623-WA0017.jpg,
@@ -747,8 +794,13 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
        class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
        onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Image+Error'; this.onerror=null;">
 
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">Piramal Agastya Project</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Piramal Agastya Project</p>
   <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
     
   </div>
@@ -759,7 +811,7 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
 
       <!-- Project 5 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-100"
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-100 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="WhatsApp Image 2025-09-27 at 10.04.33 AM (1).jpeg,
                   WhatsApp Image 2025-09-27 at 10.04.33 AM (2).jpeg,
@@ -799,8 +851,13 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
        class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
        onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Image+Error'; this.onerror=null;">
 
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">Raymond Bandra Project</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Raymond Bandra Project</p>
   <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
     
   </div>
@@ -808,7 +865,7 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
 
       <!-- Project 6 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-200"
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-200 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="IMG_20161224_160224_HDR.jpg,
                   IMG_20161224_160208_HDR.jpg">
@@ -817,8 +874,13 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
        class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
        onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Image+Error'; this.onerror=null;">
 
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">B. E. Billimoria Raptacos Thane Project</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">B. E. Billimoria Raptacos Thane Project</p>
    <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
     
   </div>
@@ -826,22 +888,27 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
 
       <!-- Project 7 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-300"
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-300 dark:bg-gray-900"
            onclick="openProjectGallery(this)"
            data-images=" Lodha Site (33).jpg,https://placehold.co/800x600/5e3c24/f4f1ee?text=Project+7.2">
         
         <!-- Cover Image -->
         <img src=" Lodha Site (33).jpg" alt="Lodha Project 1" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Project+7.1'; this.onerror=null;">
         
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">Lodha Group</p>
+        <!-- NEW: Project overlay -->
+        <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+          <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+        </div>
+        
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Lodha Group</p>
          <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
     
         </div>
       </div>
 
       <!-- Project 8 -->
-     <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-100"
+     <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-100 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="IMG_20161017_111059_HDR.jpg,
                   Ashirwad Rock Cutting 1.jpg,
@@ -851,9 +918,14 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
        class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
        onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Image+Error'; this.onerror=null;">
 
-  <div class="equipment-info p-5 bg-white">
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
     
-    <p class="text-brand-primary font-semibold text-lg m-0">Ashirwad Bungalow Project</p>
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Ashirwad Bungalow Project</p>
    <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
     
   </div>
@@ -862,7 +934,7 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
       <!-- Project 9 -->
      <!-- Project 9 -->
-<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-200"
+<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-200 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="
 
@@ -876,8 +948,13 @@ WhatsApp Image 2021-09-01 at 19.50.45.jpeg,
   <!-- Cover Image -->
   <img src="WhatsApp Image 2021-09-01 at 19.49.54.jpeg" alt="Jammu Project 1" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Project+9.1'; this.onerror=null;">
   
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">HCC Jammu Project</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+  
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">HCC Jammu Project</p>
    <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
     
   </div>
@@ -886,7 +963,7 @@ WhatsApp Image 2021-09-01 at 19.50.45.jpeg,
 
       <!-- Project 10 -->
       <!-- Project X -->
-<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-300"
+<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-300 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="
 WhatsApp Image 2025-03-12 at 9.09.40 AM.jpeg,
@@ -896,30 +973,40 @@ WhatsApp Image 2025-03-07 at 5.52.47 PM.jpeg,
   <!-- Cover Image -->
   <img src="WhatsApp Image 2025-03-12 at 9.09.40 AM.jpeg" alt="Forest Hill Project" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Forest+Hill'; this.onerror=null;">
   
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">L&T Forest Hill Project</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+  
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">L&T Forest Hill Project</p>
      <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
    
   </div>
 </div>
 
       <!-- Project 11 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-100"
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-100 dark:bg-gray-900"
            onclick="openProjectGallery(this)"
            data-images="AJANTA PHARMA1.JPG,AJANTA PHARMA 213.JPG,AJANTA PHARMA2.JPG,AJANTA PHARMA4.JPG">
         
         <!-- Cover Image -->
         <img src="AJANTA PHARMA1.JPG" alt="Forest Hill 1" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Project+10.1'; this.onerror=null;">
         
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">Ajanta Pharma</p>
+        <!-- NEW: Project overlay -->
+        <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+          <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+        </div>
+        
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Ajanta Pharma</p>
            <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
           
         </div>
       </div>
 
       <!--project 12-->
-<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-200"
+<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-200 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="IMG-20160213-WA0014.jpg,aristo goregaon sommit.JPG,aristo goregaon sommit3.JPG,aristo goregaon sommit4.JPG,aristo sommit 4.JPG,Images 16.jpg,Images 17.jpg,Images 18.jpg,Images 19.jpg,Images 20.jpg,IMG-20160209-WA0003.jpg">
 
@@ -927,8 +1014,13 @@ WhatsApp Image 2025-03-07 at 5.52.47 PM.jpeg,
   <img src="IMG-20160213-WA0014.jpg" alt="Aristo Project" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" 
        onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Image+Error'; this.onerror=null;">
   
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">Arissto goregaon</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+  
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Arissto goregaon</p>
   <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
    
   </div>
@@ -936,7 +1028,7 @@ WhatsApp Image 2025-03-07 at 5.52.47 PM.jpeg,
 
 
 <!-- Mahindra Road Project Kandivali -->
-<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-300"
+<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-300 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="
 mahindra kandivali 3.JPG,
@@ -959,15 +1051,20 @@ mahindra kandivali 2.JPG,
   <!-- Cover Image -->
   <img src="mahindra kandivali 3.JPG" alt="Mahindra Road Project Kandivali" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Mahindra+Kandivali'; this.onerror=null;">
   
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">Mahindra Road Project, Kandivali</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+  
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Mahindra Road Project, Kandivali</p>
   <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
    
   </div>
 </div>
 
 <!-- Piramal Revanta Mulund Project -->
-<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-100"
+<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-100 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="
 IMG-20170118-WA0002.jpg,
@@ -986,8 +1083,13 @@ IMG-20170118-WA0000.jpg,
   <!-- Cover Image -->
   <img src="IMG-20170103-WA0002.jpg" alt="Piramal Revanta Mulund Project" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Piramal+Mulund'; this.onerror=null;">
   
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">Piramal Revanta Project, Mulund</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+  
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Piramal Revanta Project, Mulund</p>
   <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
    
   </div>
@@ -996,7 +1098,7 @@ IMG-20170118-WA0000.jpg,
 
 
 <!-- Vasai Madhuban Shantee Housing Project -->
-<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-200"
+<div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl cursor-pointer relative scroll-animate zoom-in delay-200 dark:bg-gray-900"
      onclick="openProjectGallery(this)"
      data-images="
 DSCN0113.JPG,
@@ -1013,8 +1115,13 @@ DSCN0112.JPG,
   <!-- Cover Image -->
   <img src="DSCN0113.JPG" alt="Vasai Madhuban Shantee Housing Project" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Vasai+Project'; this.onerror=null;">
   
-  <div class="equipment-info p-5 bg-white">
-    <p class="text-brand-primary font-semibold text-lg m-0">Vasai Madhuban Shantee Housing</p>
+  <!-- NEW: Project overlay -->
+  <div class="absolute top-0 left-0 w-full h-72 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+    <i class="fas fa-search-plus text-white text-4xl transform transition-transform duration-300 group-hover:scale-125"></i>
+  </div>
+  
+  <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+    <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Vasai Madhuban Shantee Housing</p>
   <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-md">Completed</div>
    
   </div>
@@ -1027,81 +1134,81 @@ DSCN0112.JPG,
   </section>
 
   <!-- Project Map Section -->
-<section id="map" class="section py-20 px-5 bg-white">
-  <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Project Footprint</h2>
-  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">Visualizing our operations and project sites across the nation</p>
+<section id="map" class="section py-20 px-5 bg-white dark:bg-gray-900">
+  <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Project Footprint</h2>
+  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Visualizing our operations and project sites across the nation</p>
   
-  <div class="map-container w-full h-[500px] rounded-2xl overflow-hidden shadow-xl mt-10 max-w-7xl mx-auto border-4 border-white scroll-animate zoom-in delay-200">
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1DHD9IoUsBa3MbyF5-Cok2m7wEPXXmGQ&ehbc=2E312F" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  <div class="map-container w-full h-[500px] rounded-2xl overflow-hidden shadow-xl mt-10 max-w-7xl mx-auto border-4 border-white scroll-animate zoom-in delay-200 dark:border-gray-900">
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1DHD9IoUsBa3MbyF5-Cok2m7wEPXXmGQ&ehbc=2E312F" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="dark:grayscale dark:brightness-90"></iframe>
   </div>
 </section>
 
   <!-- Equipment Section -->
-  <section id="equipment" class="section py-20 bg-industrial-texture">
+  <section id="equipment" class="section py-20 bg-industrial-texture dark:bg-black">
     <div class="max-w-7xl mx-auto px-5"> <!-- NEW: Inner container for content alignment -->
-      <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Our Machinery</h2>
-      <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">State-of-the-art equipment for efficient and safe operations</p>
+      <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Our Machinery</h2>
+      <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">State-of-the-art equipment for efficient and safe operations</p>
       <div class="equipment-gallery grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100" onclick="openLightbox('https://5.imimg.com/data5/SELLER/Default/2024/1/374684686/IU/JU/BG/14766465/tata-hitachi-ex130-prime-1000x1000.png', 'Poclain EX-380')">
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100 dark:bg-gray-900" onclick="openLightbox('https://5.imimg.com/data5/SELLER/Default/2024/1/374684686/IU/JU/BG/14766465/tata-hitachi-ex130-prime-1000x1000.png', 'Poclain EX-380')">
         <img src="https://5.imimg.com/data5/SELLER/Default/2024/1/374684686/IU/JU/BG/14766465/tata-hitachi-ex130-prime-1000x1000.png" alt="Excavator" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=EX-380'; this.onerror=null;">
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">Poclain EX-380 (Qty: 03)</p>
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Poclain EX-380 (Qty: 03)</p>
         </div>
       </div>
       <!-- Machine 2 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200" onclick="openLightbox('https://5.imimg.com/data5/SI/IV/MY-75144898/ex210-1000x1000.png', 'Poclain EX-210')">
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200 dark:bg-gray-900" onclick="openLightbox('https://5.imimg.com/data5/SI/IV/MY-75144898/ex210-1000x1000.png', 'Poclain EX-210')">
         <img src="https://5.imimg.com/data5/SI/IV/MY-75144898/ex210-1000x1000.png" alt="Excavator" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=EX-210'; this.onerror=null;">
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">Poclain EX-210 (Qty: 10)</p>
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Poclain EX-210 (Qty: 10)</p>
         </div>
       </div>
       <!-- Machine 3 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300" onclick="openLightbox('https://5.imimg.com/data5/CG/DW/XF/SELLER-90183454/poclain-with-bucket-on-monthly-basis-jpg-1000x1000.jpg', 'Poclain EX-200')">
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300 dark:bg-gray-900" onclick="openLightbox('https://5.imimg.com/data5/CG/DW/XF/SELLER-90183454/poclain-with-bucket-on-monthly-basis-jpg-1000x1000.jpg', 'Poclain EX-200')">
         <img src="https://5.imimg.com/data5/CG/DW/XF/SELLER-90183454/poclain-with-bucket-on-monthly-basis-jpg-1000x1000.jpg" alt="Excavator" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=EX-200'; this.onerror=null;">
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">Poclain EX-200 (Qty: 12)</p>
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Poclain EX-200 (Qty: 12)</p>
         </div>
       </div>
       <!-- Machine 4 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100" onclick="openLightbox('https://wallpaperaccess.com/full/2960965.jpg', 'JCB Backhoe Loader')">
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100 dark:bg-gray-900" onclick="openLightbox('https://wallpaperaccess.com/full/2960965.jpg', 'JCB Backhoe Loader')">
         <img src="https://wallpaperaccess.com/full/2960965.jpg" alt="JCB" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=JCB'; this.onerror=null;">
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">JCB Backhoe Loader (Qty: 03)</p>
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">JCB Backhoe Loader (Qty: 03)</p>
         </div>
       </div>
       <!-- Machine 5 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200" onclick="openLightbox('https://kisiel-hire.co.uk/wp-content/uploads/2022/11/Types-of-piling-rig-and-why-you-should-hire-them.jpg', 'Piling Rig')">
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200 dark:bg-gray-900" onclick="openLightbox('https://kisiel-hire.co.uk/wp-content/uploads/2022/11/Types-of-piling-rig-and-why-you-should-hire-them.jpg', 'Piling Rig')">
         <img src="https://kisiel-hire.co.uk/wp-content/uploads/2022/11/Types-of-piling-rig-and-why-you-should-hire-them.jpg" alt="Piling Rig" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Piling+Rig'; this.onerror=null;">
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">Piling Rig (Qty: 04)</p>
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Piling Rig (Qty: 04)</p>
         </div>
       </div>
       <!-- Machine 6 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300" onclick="openLightbox('httpsDUMMY', 'Piling DTH Machine')">
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300 dark:bg-gray-900" onclick="openLightbox('httpsDUMMY', 'Piling DTH Machine')">
         <img src="https://image.made-in-china.com/2f0j00bqhzSGeICCou/Hf385y-Hydraulic-Solar-Piling-DTH-Drilling-Machine-High-Rotating-Torque.jpg" alt="DTH Machine" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=DTH+Machine'; this.onerror=null;">
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">Piling DTH Machine (Qty: 04)</p>
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Piling DTH Machine (Qty: 04)</p>
         </div>
       </div>
       <!-- Machine 7 -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100" onclick="openLightbox('httpsDUMMY', 'Anchor Crawler DTH Machine (Qty: 04)')">
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100 dark:bg-gray-900" onclick="openLightbox('httpsDUMMY', 'Anchor Crawler DTH Machine (Qty: 04)')">
         <img src="https://i.pinimg.com/originals/12/14/db/1214dbca01825258a263196a18c03304.jpg" alt="Anchor Crawler DTH Drill" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Anchor+Crawler'; this.onerror=null;">
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">Anchor Crawler DTH (Qty: 04)</p>
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Anchor Crawler DTH (Qty: 04)</p>
         </div>
       </div>
       <!-- Machine 8 (NEW) -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200" onclick="openLightbox('httpsDUMMY', 'Poclain EX-70 (Qty: 03)')">
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200 dark:bg-gray-900" onclick="openLightbox('httpsDUMMY', 'Poclain EX-70 (Qty: 03)')">
         <img src="poclainex70.jpg" alt="Poclain EX-70" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=EX-70'; this.onerror=null;">
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">Poclain EX-70 (Qty: 03)</p>
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Poclain EX-70 (Qty: 03)</p>
         </div>
       </div>
       <!-- Machine 9 (NEW) -->
-      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300" onclick="openLightbox('httpsDUMMY', 'Dumper (Qty: 50)')">
+      <div class="equipment-item bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300 dark:bg-gray-900" onclick="openLightbox('DUMMY', 'Dumper (Qty: 50)')">
         <img src="dumper.jpg" alt="Dumper Truck" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/400x280/f4a460/3b2f2f?text=Dumper'; this.onerror=null;">
-        <div class="equipment-info p-5 bg-white">
-          <p class="text-brand-primary font-semibold text-lg m-0">Dumper (Qty: 50)</p>
+        <div class="equipment-info p-5 bg-white dark:bg-gray-900">
+          <p class="text-brand-primary font-semibold text-lg m-0 dark:text-white">Dumper (Qty: 50)</p>
         </div>
       </div>
     </div>
@@ -1124,48 +1231,53 @@ DSCN0112.JPG,
   <div class="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mt-10">
 
     <div class="feature-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 
-                hover:bg-gradient-to-r from-brand-light to-brand-dark hover:text-white hover:scale-105 group scroll-animate zoom-in delay-100">
-      <div class="feature-icon text-4xl mb-4 group-hover:text-white text-brand-primary">
+                hover:bg-gradient-to-r from-brand-light to-brand-dark hover:text-white hover:scale-105 group scroll-animate zoom-in delay-100
+                dark:bg-gray-900 dark:hover:bg-brand-light">
+      <div class="feature-icon text-4xl mb-4 group-hover:text-white text-brand-primary dark:text-white">
         <i class="fas fa-hard-hat"></i>
       </div>
-      <h4 class="text-xl font-semibold mb-2 group-hover:text-white text-brand-primary font-heading">Experienced Operators</h4>
-      <p class="group-hover:text-white/90 text-gray-600">Skilled professionals with years of expertise</p>
+      <h4 class="text-xl font-semibold mb-2 group-hover:text-white text-brand-primary font-heading dark:text-white">Experienced Operators</h4>
+      <p class="group-hover:text-white/90 text-gray-600 dark:text-gray-300">Skilled professionals with years of expertise</p>
     </div>
 
     <div class="feature-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 
-                hover:bg-gradient-to-r from-brand-light to-brand-dark hover:text-white hover:scale-105 group scroll-animate zoom-in delay-200">
-      <div class="feature-icon text-4xl mb-4 group-hover:text-white text-brand-primary">
+                hover:bg-gradient-to-r from-brand-light to-brand-dark hover:text-white hover:scale-105 group scroll-animate zoom-in delay-200
+                dark:bg-gray-900 dark:hover:bg-brand-light">
+      <div class="feature-icon text-4xl mb-4 group-hover:text-white text-brand-primary dark:text-white">
         <i class="fas fa-stopwatch"></i>
       </div>
-      <h4 class="text-xl font-semibold mb-2 group-hover:text-white text-brand-primary font-heading">Timely Completion</h4>
-      <p class="group-hover:text-white/90 text-gray-600">On-time project delivery guaranteed</p>
+      <h4 class="text-xl font-semibold mb-2 group-hover:text-white text-brand-primary font-heading dark:text-white">Timely Completion</h4>
+      <p class="group-hover:text-white/90 text-gray-600 dark:text-gray-300">On-time project delivery guaranteed</p>
     </div>
 
     <div class="feature-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 
-                hover:bg-gradient-to-r from-brand-light to-brand-dark hover:text-white hover:scale-105 group scroll-animate zoom-in delay-300">
-      <div class="feature-icon text-4xl mb-4 group-hover:text-white text-brand-primary">
+                hover:bg-gradient-to-r from-brand-light to-brand-dark hover:text-white hover:scale-105 group scroll-animate zoom-in delay-300
+                dark:bg-gray-900 dark:hover:bg-brand-light">
+      <div class="feature-icon text-4xl mb-4 group-hover:text-white text-brand-primary dark:text-white">
         <i class="fas fa-industry"></i>
       </div>
-      <h4 class="text-xl font-semibold mb-2 group-hover:text-white text-brand-primary font-heading">Modern Equipment</h4>
-      <p class="group-hover:text-white/90 text-gray-600">Latest machinery for optimal results</p>
+      <h4 class="text-xl font-semibold mb-2 group-hover:text-white text-brand-primary font-heading dark:text-white">Modern Equipment</h4>
+      <p class="group-hover:text-white/90 text-gray-600 dark:text-gray-300">Latest machinery for optimal results</p>
     </div>
 
     <div class="feature-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 
-                hover:bg-gradient-to-r from-brand-light to-brand-dark hover:text-white hover:scale-105 group scroll-animate zoom-in delay-400">
-      <div class="feature-icon text-4xl mb-4 group-hover:text-white text-brand-primary">
+                hover:bg-gradient-to-r from-brand-light to-brand-dark hover:text-white hover:scale-105 group scroll-animate zoom-in delay-400
+                dark:bg-gray-900 dark:hover:bg-brand-light">
+      <div class="feature-icon text-4xl mb-4 group-hover:text-white text-brand-primary dark:text-white">
         <i class="fas fa-shield-alt"></i>
       </div>
-      <h4 class="text-xl font-semibold mb-2 group-hover:text-white text-brand-primary font-heading">Safety First</h4>
-      <p class="group-hover:text-white/90 text-gray-600">Strict safety protocols and compliance</p>
+      <h4 class="text-xl font-semibold mb-2 group-hover:text-white text-brand-primary font-heading dark:text-white">Safety First</h4>
+      <p class="group-hover:text-white/90 text-gray-600 dark:text-gray-300">Strict safety protocols and compliance</p>
     </div>
 
     <div class="feature-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 
-                hover:bg-gradient-to-r from-brand-light to-brand-dark hover:text-white hover:scale-105 group scroll-animate zoom-in delay-500">
-      <div class="feature-icon text-4xl mb-4 group-hover:text-white text-brand-primary">
+                hover:bg-gradient-to-r from-brand-light to-brand-dark hover:text-white hover:scale-105 group scroll-animate zoom-in delay-500
+                dark:bg-gray-900 dark:hover:bg-brand-light">
+      <div class="feature-icon text-4xl mb-4 group-hover:text-white text-brand-primary dark:text-white">
         <i class="fas fa-dollar-sign"></i>
       </div>
-      <h4 class="text-xl font-semibold mb-2 group-hover:text-white text-brand-primary font-heading">Cost-Effective</h4>
-      <p class="group-hover:text-white/90 text-gray-600">Competitive pricing without compromising quality</p>
+      <h4 class="text-xl font-semibold mb-2 group-hover:text-white text-brand-primary font-heading dark:text-white">Cost-Effective</h4>
+      <p class="group-hover:text-white/90 text-gray-600 dark:text-gray-300">Competitive pricing without compromising quality</p>
     </div>
 
   </div>
@@ -1175,35 +1287,41 @@ DSCN0112.JPG,
 
 
   <!-- Safety & Certifications Section -->
-  <section id="safety" class="section py-20 px-5 bg-white">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Safety & Certifications</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">Our unwavering commitment to safety and quality standards</p>
+  <section id="safety" class="section py-20 px-5 bg-white dark:bg-gray-900">
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Safety & Certifications</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Our unwavering commitment to safety and quality standards</p>
     <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 text-center">
       
       <!-- Certification 1 -->
-      <div class="cert-card bg-gray-50 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl scroll-animate zoom-in delay-100">
+      <div class="cert-card bg-gray-50 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl scroll-animate zoom-in delay-100 dark:bg-gray-800">
         <div class="cert-icon text-5xl mb-4 text-brand-dark">🏆</div>
-        <h4 class="text-brand-primary mb-2 text-xl font-semibold font-heading">ISO 9001:2015</h4>
-        <p class="text-gray-600 text-sm">Quality Management Systems</p>
+        <h4 class="text-brand-primary mb-2 text-xl font-semibold font-heading dark:text-white">ISO 9001:2015</h4>
+        <p class="text-gray-600 text-sm dark:text-gray-300">Quality Management Systems</p>
       </div>
 
       <!-- Certification 2 -->
-      <div class="cert-card bg-gray-50 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl scroll-animate zoom-in delay-200">
+      <div class="cert-card bg-gray-50 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl scroll-animate zoom-in delay-200 dark:bg-gray-800">
         <div class="cert-icon text-5xl mb-4 text-brand-dark">🛡️</div>
-        <h4 class="text-brand-primary mb-2 text-xl font-semibold font-heading">ISO 45001:2018</h4>
-        <p class="text-gray-600 text-sm">Occupational Health & Safety</p>
+        <h4 class="text-brand-primary mb-2 text-xl font-semibold font-heading dark:text-white">ISO 45001:2018</h4>
+        <p class="text-gray-600 text-sm dark:text-gray-300">Occupational Health & Safety</p>
       </div>
 
       <!-- Certification 3 -->
-      <div class="cert-card bg-gray-50 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl scroll-animate zoom-in delay-300">
+      <div class="cert-card bg-gray-50 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl scroll-animate zoom-in delay-300 dark:bg-gray-800">
         <div class="cert-icon text-5xl mb-4 text-brand-dark">✅</div>
-        <h4 class="text-brand-primary mb-2 text-xl font-semibold font-heading">100% Compliance</h4>
-        <p class="text-gray-600 text-sm">Adherence to All Site Safety Norms</p>
+        <h4 class="text-brand-primary mb-2 text-xl font-semibold font-heading dark:text-white">100% Compliance</h4>
+        <p class="text-gray-600 text-sm dark:text-gray-300">Adherence to All Site Safety Norms</p>
       </div>
+
+      <!-- Certification 2 -->
+      <!-- DELETED duplicate card that was missing dark mode styles -->
+
+      <!-- Certification 3 -->
+      <!-- DELETED duplicate card that was missing dark mode styles -->
 
       
 
-      </button>
+      
 
     </div>
   </section>
@@ -1212,61 +1330,80 @@ DSCN0112.JPG,
   
   <!-- Team Section -->
 <section id="team" class="section py-20 px-5 max-w-7xl mx-auto">
-  <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Meet The Experts</h2>
-  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">Our leadership team guiding every project to success</p>
+  <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Meet The Experts</h2>
+  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Our leadership team guiding every project to success</p>
   
   <div class="team-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
     
     <!-- Reusable Card Start -->
     <!-- Team Member 1 -->
-    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100">
+    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100 dark:bg-gray-900">
       <img src="ashok.jpg" alt="Mr. Ashok Pal" class="w-[240px] h-[300px] rounded-full mx-auto mb-5 object-cover border-4 border-brand-light/50" onerror="this.src='https://placehold.co/240x300/f4a460/3b2f2f?text=A.P.'; this.onerror=null;">
-      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading">Mr. Ashok Pal</h4>
-      <p class="text-gray-600">Proprietor</p>
+      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading dark:text-white">Mr. Ashok Pal</h4>
+      <p class="text-gray-600 dark:text-gray-300">Proprietor</p>
     </div>
 
     <!-- Team Member 2 -->
-    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200">
+    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200 dark:bg-gray-900">
       <img src="lokesh.jpg" alt="Mr. Ramlokesh Pal" class="w-[240px] h-[300px] rounded-full mx-auto mb-5 object-cover border-4 border-brand-light/50" onerror="this.src='https://placehold.co/240x300/f4a460/3b2f2f?text=R.P.'; this.onerror=null;">
-      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading">Mr. Ramlokesh Pal</h4>
-      <p class="text-gray-600">Manager (15 Yrs Exp)</p>
+      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading dark:text-white">Mr. Ramlokesh Pal</h4>
+      <p class="text-gray-600 dark:text-gray-300">Manager (15 Yrs Exp)</p>
     </div>
 
     <!-- Team Member 3 -->
-    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300">
+    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300 dark:bg-gray-900">
       <img src="jeetu.jpg" alt="Mr. Jeetu Prasad" class="w-[240px] h-[300px] rounded-full mx-auto mb-5 object-cover border-4 border-brand-light/50" onerror="this.src='https://placehold.co/240x300/f4a460/3b2f2f?text=J.P.'; this.onerror=null;">
-      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading">Mr. Jeetu Prasad</h4>
-      <p class="text-gray-600">DGM (25 Yrs Exp)</p>
+      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading dark:text-white">Mr. Jeetu Prasad</h4>
+      <p class="text-gray-600 dark:text-gray-300">DGM (25 Yrs Exp)</p>
     </div>
 
     <!-- Team Member 4 -->
-    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-400">
-      <img src="adalat.jpg" alt="Mr. Adalat Yadav" class="w-[240px] h-[300px] rounded-full mx-auto mb-5 object-cover border-4 border-brand-light/50" onerror="this.src='https://placehold.co/240x300/f4a460/3b2f2f?text=A.Y.'; this.onerror=null;">
-      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading">Mr. Adalat Yadav</h4>
-      <p class="text-gray-600">All Project In charge (15 Yrs Exp)</p>
+    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-400 dark:bg-gray-900">
+      <img src="adalat.jpg" alt="Mr. Adalat Yadav" class="w-[240px] h-[300px] rounded-full mx-auto mb-5 object-cover border-4 border-brand-light/50" onerror="this.src='httpsG://placehold.co/240x300/f4a460/3b2f2f?text=A.Y.'; this.onerror=null;">
+      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading dark:text-white">Mr. Adalat Yadav</h4>
+      <p class="text-gray-600 dark:text-gray-300">All Project In charge (15 Yrs Exp)</p>
     </div>
 
     <!-- Team Member 5 -->
-    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100">
+    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-100 dark:bg-gray-900">
       <img src="pravin.jpg" alt="Mr. Pravin Chavan" class="w-[240px] h-[300px] rounded-full mx-auto mb-5 object-cover border-4 border-brand-light/50" onerror="this.src='https://placehold.co/240x300/f4a460/3b2f2f?text=P.C.'; this.onerror=null;">
-      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading">Mr. Pravin Chavan</h4>
-      <p class="text-gray-600">Project Manager (10 Yrs Exp)</p>
+      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading dark:text-white">Mr. Pravin Chavan</h4>
+      <p class="text-gray-600 dark:text-gray-300">Project Manager (10 Yrs Exp)</p>
     </div>
 
     <!-- Team Member 6 -->
-    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200">
+    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-200 dark:bg-gray-900">
       <img src="surendra.jpg" alt="Mr. Surendra Yadav" class="w-[240px] h-[300px] rounded-full mx-auto mb-5 object-cover border-4 border-brand-light/50" onerror="this.src='https://placehold.co/240x300/f4a460/3b2f2f?text=S.Y.'; this.onerror=null;">
-      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading">Mr. Surendra Yadav</h4>
-      <p class="text-gray-600"> Engineer (5 Yrs Exp)</p>
+      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading dark:text-white">Mr. Surendra Yadav</h4>
+      <p class="text-gray-600 dark:text-gray-300"> Engineer (5 Yrs Exp)</p>
     </div>
 
     
     <!-- Team Member 7 -->
-    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300">
+    <div class="team-card bg-white p-8 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl scroll-animate zoom-in delay-300 dark:bg-gray-900">
       <img src="abhinash.jpg" alt="Mr. Surendra Yadav" class="w-[240px] h-[300px] rounded-full mx-auto mb-5 object-cover border-4 border-brand-light/50" onerror="this.src='https://placehold.co/240x300/f4a460/3b2f2f?text=S.Y.'; this.onerror=null;">
-      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading">Abhinash Verma</h4>
-      <p class="text-gray-600"> Sr. Engineer (10 Yrs Exp)</p>
+      <h4 class="text-brand-primary mb-2 text-2xl font-semibold font-heading dark:text-white">Abhinash Verma</h4>
+      <p class="text-gray-600 dark:text-gray-300"> Sr. Engineer (10 Yrs Exp)</p>
     </div>
+
+    <!-- Team Member 2 -->
+    <!-- DELETED duplicate Ramlokesh Pal card -->
+
+    <!-- Team Member 3 -->
+    <!-- DELETED duplicate Jeetu Prasad card -->
+
+    <!-- Team Member 4 -->
+    <!-- DELETED duplicate Adalat Yadav card -->
+
+    <!-- Team Member 5 -->
+    <!-- DELETED duplicate Pravin Chavan card -->
+
+    <!-- Team Member 6 -->
+    <!-- DELETED duplicate Surendra Yadav card -->
+
+    
+    <!-- Team Member 7 -->
+    <!-- DELETED duplicate Abhinash Verma card -->
     <!-- Reusable Card End -->
 
   </div>
@@ -1280,10 +1417,10 @@ DSCN0112.JPG,
     
     <div class="testimonials-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
       
-      <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl scroll-animate fade-in-up delay-100">
+      <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl scroll-animate fade-in-up delay-100 dark:bg-gray-900">
         <div class="testimonial-quote text-7xl text-brand-light opacity-20 absolute top-2 left-5">"</div>
         
-        <div class="testimonial-text my-8 text-gray-600 leading-relaxed italic">
+        <div class="testimonial-text my-8 text-gray-600 leading-relaxed italic dark:text-gray-300">
           "OM Enterprises has been a cornerstone in our recent developments. Their professionalism and quality of work in excavation and piling are truly commendable."
         </div>
         
@@ -1291,36 +1428,36 @@ DSCN0112.JPG,
         
         <div class="testimonial-author flex items-center gap-4 mt-5">
           <div class="testimonial-author-info">
-            <h4 class="text-brand-primary mb-1 font-semibold font-heading">Prestige Group</h4>
-            <p class="text-gray-500 text-sm">Real Estate Developer</p>
+            <h4 class="text-brand-primary mb-1 font-semibold font-heading dark:text-white">Prestige Group</h4>
+            <p class="text-gray-500 text-sm dark:text-gray-400">Real Estate Developer</p>
           </div>
         </div>
       </div>
       
-      <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl scroll-animate fade-in-up delay-200">
+      <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl scroll-animate fade-in-up delay-200 dark:bg-gray-900">
         <div class="testimonial-quote text-7xl text-brand-light opacity-20 absolute top-2 left-5">"</div>
-        <div class="testimonial-text my-8 text-gray-600 leading-relaxed italic">
+        <div class="testimonial-text my-8 text-gray-600 leading-relaxed italic dark:text-gray-300">
           Their piling work at our Thane site was top-notch. The team maintained excellent safety standards and completed the foundation work with precision. A reliable partner for construction projects.
         </div>
         <div class="stars text-brand-light text-xl mt-3">⭐⭐⭐⭐⭐</div>
         <div class="testimonial-author flex items-center gap-4 mt-5">
           <div class="testimonial-author-info">
-            <h4 class="text-brand-primary mb-1 font-semibold font-heading">Welspun Realty</h4>
-            <p class="text-gray-500 text-sm">Project Manager</p>
+            <h4 class="text-brand-primary mb-1 font-semibold font-heading dark:text-white">Welspun Realty</h4>
+            <p class="text-gray-500 text-sm dark:text-gray-400">Project Manager</p>
           </div>
         </div>
       </div>
       
-      <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl scroll-animate fade-in-up delay-300">
+      <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg relative transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl scroll-animate fade-in-up delay-300 dark:bg-gray-900">
         <div class="testimonial-quote text-7xl text-brand-light opacity-20 absolute top-2 left-5">"</div>
-        <div class="testimonial-text my-8 text-gray-600 leading-relaxed italic">
+        <div class="testimonial-text my-8 text-gray-600 leading-relaxed italic dark:text-gray-300">
           Working with OM Enterprises was a great experience. Their modern equipment and skilled operators ensured smooth excavation work. They are our go-to contractors for foundation work.
         </div>
         <div class="stars text-brand-light text-xl mt-3">⭐⭐⭐⭐⭐</div>
         <div class="testimonial-author flex items-center gap-4 mt-5">
           <div class="testimonial-author-info">
-            <h4 class="text-brand-primary mb-1 font-semibold font-heading">Lodha Group</h4>
-            <p class="text-gray-500 text-sm">Construction Head</p>
+            <h4 class="text-brand-primary mb-1 font-semibold font-heading dark:text-white">Lodha Group</h4>
+            <p class="text-gray-500 text-sm dark:text-gray-400">Construction Head</p>
           </div>
         </div>
       </div>
@@ -1328,45 +1465,45 @@ DSCN0112.JPG,
     </div> </div> </section>
   <!-- Insights/Blog Section -->
   <section id="insights" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Industry Insights</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">Sharing our expertise on excavation and construction challenges</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Industry Insights</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Sharing our expertise on excavation and construction challenges</p>
     <div class="insights-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
       
       <!-- Blog Post 1 -->
-      <div class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg group scroll-animate zoom-in delay-100">
+      <div class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg group scroll-animate zoom-in delay-100 dark:bg-gray-900">
         <div class="overflow-hidden h-56">
           <img src="blog1.png" alt="Piling in Mumbai Soil" class="w-full h-full object-cover blog-card-image" onerror="this.src='https://placehold.co/600x400/f4a460/3b2f2f?text=Piling+Factors'; this.onerror=null;">
         </div>
         <div class="p-6">
           <p class="text-brand-dark text-sm mb-2 uppercase tracking-wider">Geotechnical</p>
-          <h3 class="text-brand-primary mb-3 text-2xl font-semibold font-heading">5 Factors Affecting Piling in Mumbai Soil</h3>
-          <p class="text-gray-600 leading-relaxed mb-4">Understanding the unique challenges of reclaimed land and soil conditions in the Mumbai region is critical for... (Article preview)</p>
+          <h3 class="text-brand-primary mb-3 text-2xl font-semibold font-heading dark:text-white">5 Factors Affecting Piling in Mumbai Soil</h3>
+          <p class="text-gray-600 leading-relaxed mb-4 dark:text-gray-300">Understanding the unique challenges of reclaimed land and soil conditions in the Mumbai region is critical for... (Article preview)</p>
           <a href="#" class="font-semibold text-brand-dark hover:text-brand-light transition-colors duration-300">Read More →</a>
         </div>
       </div>
 
       <!-- Blog Post 2 -->
-      <div class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg group scroll-animate zoom-in delay-200">
+      <div class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg group scroll-animate zoom-in delay-200 dark:bg-gray-900">
         <div class="overflow-hidden h-56">
           <img src="blog2.png" alt="Choosing an Excavation Partner" class="w-full h-full object-cover blog-card-image" onerror="this.src='https://placehold.co/600x400/5e3c24/f4f1ee?text=Excavation+Partner'; this.onerror=null;">
         </div>
         <div class="p-6">
           <p class="text-brand-dark text-sm mb-2 uppercase tracking-wider">Project Management</p>
-          <h3 class="text-brand-primary mb-3 text-2xl font-semibold font-heading">Choosing the Right Excavation Partner</h3>
-          <p class="text-gray-600 leading-relaxed mb-4">It's not just about the lowest bid. We explore the key metrics: safety record, fleet quality, and operator experience... (Article preview)</p>
+          <h3 class="text-brand-primary mb-3 text-2xl font-semibold font-heading dark:text-white">Choosing the Right Excavation Partner</h3>
+          <p class="text-gray-600 leading-relaxed mb-4 dark:text-gray-300">It's not just about the lowest bid. We explore the key metrics: safety record, fleet quality, and operator experience... (Article preview)</p>
           <a href="#" class="font-semibold text-brand-dark hover:text-brand-light transition-colors duration-300">Read More →</a>
         </div>
       </div>
 
       <!-- Blog Post 3 -->
-      <div class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg group scroll-animate zoom-in delay-300">
+      <div class="blog-card bg-white rounded-2xl overflow-hidden shadow-lg group scroll-animate zoom-in delay-300 dark:bg-gray-900">
         <div class="overflow-hidden h-56">
           <img src="blog3.png" alt="Modern Safety Technology" class="w-full h-full object-cover blog-card-image" onerror="this.src='https://placehold.co/600x400/3b2f2f/f4f1ee?text=Safety+Tech'; this.onerror=null;">
         </div>
         <div class="p-6">
           <p class="text-brand-dark text-sm mb-2 uppercase tracking-wider">Safety</p>
-          <h3 class="text-brand-primary mb-3 text-2xl font-semibold font-heading">Modern Tech in Site Safety Management</h3>
-          <p class="text-gray-600 leading-relaxed mb-4">From telematics on heavy machinery to real-time monitoring, discover how technology is making excavation sites safer... (Article preview)</p>
+          <h3 class="text-brand-primary mb-3 text-2xl font-semibold font-heading dark:text-white">Modern Tech in Site Safety Management</h3>
+          <p class="text-gray-600 leading-relaxed mb-4 dark:text-gray-300">From telematics on heavy machinery to real-time monitoring, discover how technology is making excavation sites safer... (Article preview)</p>
           <a href="#" class="font-semibold text-brand-dark hover:text-brand-light transition-colors duration-300">Read More →</a>
         </div>
       </div>
@@ -1376,61 +1513,60 @@ DSCN0112.JPG,
 
   <!-- FAQ Section -->
   <section id="faq" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-b
-    rand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Frequently Asked Questions</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">Find answers to common questions about our services</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Frequently Asked Questions</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Find answers to common questions about our services</p>
     <div class="faq-container max-w-4xl mx-auto mt-10 scroll-animate fade-in-up delay-200">
-      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300">
-        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50">
+      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300 dark:bg-gray-900">
+        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
           <span>What types of excavation services do you provide?</span>
           <span class="faq-icon text-2xl text-brand-light transition-transform duration-300">▼</span>
         </div>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed">
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed dark:text-gray-300">
           <p class="pb-6">We provide comprehensive excavation services including site preparation, foundation digging, land clearing, grading, trenching, backfilling, and demolition work. Our services cover residential, commercial, and infrastructure projects across India.</p>
         </div>
       </div>
-      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300">
-        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50">
+      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300 dark:bg-gray-900">
+        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
           <span>How do you ensure safety on construction sites?</span>
           <span class="faq-icon text-2xl text-brand-light transition-transform duration-300">▼</span>
         </div>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed">
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed dark:text-gray-300">
           <p class="pb-6">Safety is our top priority. We follow strict safety protocols, conduct regular equipment maintenance, provide comprehensive training to our operators, use modern safety equipment, and comply with all Indian construction safety standards and regulations.</p>
         </div>
       </div>
-      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300">
-        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50">
+      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300 dark:bg-gray-900">
+        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
           <span>What areas do you serve?</span>
           <span class="faq-icon text-2xl text-brand-light transition-transform duration-300">▼</span>
         </div>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed">
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed dark:text-gray-300">
           <p class="pb-6">We primarily serve Mumbai, Thane, and surrounding areas in Maharashtra. We also undertake large-scale projects across India including Delhi, Pune, Bangalore, and other major cities depending on project requirements.</p>
         </div>
       </div>
-      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300">
-        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50">
+      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300 dark:bg-gray-900">
+        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
           <span>How long does a typical excavation project take?</span>
           <span class="faq-icon text-2xl text-brand-light transition-transform duration-300">▼</span>
         </div>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed">
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed dark:text-gray-300">
           <p class="pb-6">Project duration varies based on size, complexity, and site conditions. A residential foundation typically takes 3-7 days, while larger commercial projects may take several weeks. We provide detailed timelines during the quotation process.</p>
         </div>
       </div>
-      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300">
-        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50">
+      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300 dark:bg-gray-900">
+        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
           <span>Do you provide equipment rental services?</span>
           <span class="faq-icon text-2xl text-brand-light transition-transform duration-300">▼</span>
         </div>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed">
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed dark:text-gray-300">
           <p class="pb-6">Yes, we offer equipment rental services with skilled operators. Our fleet includes excavators (EX-200, EX-210, EX-380), JCB loaders, piling rigs, and DTH drilling machines. Contact us for rental rates and availability.</p>
         </div>
       </div>
-      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300">
-        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50">
+      <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300 dark:bg-gray-900">
+        <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
           <span>How can I get a quote for my project?</span>
           <span class="faq-icon text-2xl text-brand-light transition-transform duration-300">▼</span>
         </div>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed">
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-gray-600 leading-relaxed dark:text-gray-300">
           <p class="pb-6">You can request a quote by filling out the contact form below, calling us at +91-022-49697792, emailing omenterprise20@gmail.com, or clicking the WhatsApp button. We'll schedule a site visit to provide an accurate estimate.</p>
         </div>
       </div>
@@ -1441,50 +1577,50 @@ DSCN0112.JPG,
 
   
   <!-- Careers Section -->
-  <section id="careers" class="section py-20 px-5 bg-white">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Join Our Team</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">We are growing and always looking for talented professionals to join our mission.</p>
+  <section id="careers" class="section py-20 px-5 bg-white dark:bg-gray-900">
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Join Our Team</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">We are growing and always looking for talented professionals to join our mission.</p>
     <div class="max-w-4xl mx-auto mt-10">
       
       <!-- Job Opening 1 -->
-      <div class="job-item bg-gray-50 mb-6 p-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center scroll-animate fade-in-up delay-100">
+      <div class="job-item bg-gray-50 mb-6 p-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center scroll-animate fade-in-up delay-100 dark:bg-gray-800">
         <div>
-          <h3 class="text-2xl font-semibold text-brand-primary mb-2 font-heading">Site Supervisor</h3>
+          <h3 class="text-2xl font-semibold text-brand-primary mb-2 font-heading dark:text-white">Site Supervisor</h3>
           <p class="text-brand-dark font-medium mb-2">Mumbai, Maharashtra</p>
-          <p class="text-gray-600">Responsible for overseeing site operations, ensuring safety compliance, and managing the on-ground team.</p>
+          <p class="text-gray-600 dark:text-gray-300">Responsible for overseeing site operations, ensuring safety compliance, and managing the on-ground team.</p>
         </div>
-        <a href="mailto:omenterprise20@gmail.com?subject=Application for Site Supervisor" class="mt-4 md:mt-0 btn bg-gradient-to-r from-brand-light to-brand-dark text-white py-3 px-6 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl text-sm whitespace-nowrap">
+        <a href="mailto:omenterprise20@gmail.com?subject=Application for Site Supervisor" class="mt-4 md:mt-0 btn bg-gradient-to-r from-brand-light to-brand-dark text-white py-3 px-6 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl text-sm whitespace-nowrap hover:shadow-brand-light/50">
           Apply Now
         </a>
       </div>
 
       <!-- Job Opening 2 -->
-      <div class="job-item bg-gray-50 mb-6 p-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center scroll-animate fade-in-up delay-200">
+      <div class="job-item bg-gray-50 mb-6 p-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center scroll-animate fade-in-up delay-200 dark:bg-gray-800">
         <div>
-          <h3 class="text-2xl font-semibold text-brand-primary mb-2 font-heading">Excavator Operator (EX-380)</h3>
+          <h3 class="text-2xl font-semibold text-brand-primary mb-2 font-heading dark:text-white">Excavator Operator (EX-380)</h3>
           <p class="text-brand-dark font-medium mb-2">Thane, Maharashtra</p>
-          <p class="text-gray-600">Experienced operator for heavy excavation machinery (Poclain EX-380). Must have valid license and safety certification.</p>
+          <p class="text-gray-600 dark:text-gray-300">Experienced operator for heavy excavation machinery (Poclain EX-380). Must have valid license and safety certification.</p>
         </div>
-        <a href="mailto:omenterprise20@gmail.com?subject=Application for Excavator Operator" class="mt-4 md:mt-0 btn bg-gradient-to-r from-brand-light to-brand-dark text-white py-3 px-6 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl text-sm whitespace-nowNopad">
+        <a href="mailto:omenterprise20@gmail.com?subject=Application for Excavator Operator" class="mt-4 md:mt-0 btn bg-gradient-to-r from-brand-light to-brand-dark text-white py-3 px-6 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl text-sm whitespace-nowrap hover:shadow-brand-light/50">
           Apply Now
         </a>
       </div>
 
       <!-- Job Opening 3 -->
-      <div class="job-item bg-gray-50 mb-6 p-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center scroll-animate fade-in-up delay-300">
+      <div class="job-item bg-gray-50 mb-6 p-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center scroll-animate fade-in-up delay-300 dark:bg-gray-800">
         <div>
-          <h3 class="text-2xl font-semibold text-brand-primary mb-2 font-heading">Project Engineer</h3>
+          <h3 class="text-2xl font-semibold text-brand-primary mb-2 font-heading dark:text-white">Project Engineer</h3>
           <p class="text-brand-dark font-medium mb-2">Projects across India</p>
-          <p class="text-gray-600">B.E. Civil with 5+ years experience in managing foundation and excavation projects. Willing to travel.</p>
+          <p class="text-gray-600 dark:text-gray-300">B.E. Civil with 5+ years experience in managing foundation and excavation projects. Willing to travel.</p>
         </div>
-        <a href="mailto:omenterprise20@gmail.com?subject=Application for Project Engineer" class="mt-4 md:mt-0 btn bg-gradient-to-r from-brand-light to-brand-dark text-white py-3 px-6 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl text-sm whitespace-nowrap">
+        <a href="mailto:omenterprise20@gmail.com?subject=Application for Project Engineer" class="mt-4 md:mt-0 btn bg-gradient-to-r from-brand-light to-brand-dark text-white py-3 px-6 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl text-sm whitespace-nowrap hover:shadow-brand-light/50">
           Apply Now
         </a>
       </div>
       
       <!-- General Application -->
       <div class="text-center mt-12 scroll-animate fade-in-up delay-400">
-        <p class="text-lg text-gray-600 mb-4">Don't see a role for you? Send us your resume!</p>
+        <p class="text-lg text-gray-600 mb-4 dark:text-gray-300">Don't see a role for you? Send us your resume!</p>
         <a href="mailto:omenterprise20@gmail.com?subject=General Career Inquiry" class="font-semibold text-brand-dark text-lg hover:text-brand-light transition-colors duration-300">
           omenterprise20@gmail.com
         </a>
@@ -1501,7 +1637,7 @@ DSCN0112.JPG,
       <h2 class="text-4xl md:text-5xl font-heading text-white mb-6 uppercase tracking-wider">Ready to build your next project?</h2>
       <p class="text-gray-200 text-lg mb-10 max-w-2xl mx-auto">Let our 20+ years of expertise bring your plans to life, from foundation to finish.</p>
       <a href="#" id="ctaQuoteButton" 
-         class="inline-block bg-gradient-to-r from-brand-light to-brand-dark text-white py-4 px-10 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:from-brand-dark hover:to-brand-light">
+         class="inline-block bg-gradient-to-r from-brand-light to-brand-dark text-white py-4 px-10 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:from-brand-dark hover:to-brand-light hover:shadow-brand-light/50">
         Get a Free Quote
       </a>
     </div>
@@ -1509,68 +1645,68 @@ DSCN0112.JPG,
 
   <!-- Contact Section -->
   <section id="contact" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded">Contact Us</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100">Get in touch for your next project</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Contact Us</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Get in touch for your next project</p>
     <div class="contact-grid grid md:grid-cols-2 gap-12 mt-10">
       <div class="contact-info scroll-animate fade-in-left delay-100">
-        <h3 class="text-brand-primary mb-6 text-3xl font-semibold font-heading">Get In Touch</h3>
-        <div class="contact-item flex items-start mb-5 p-4 bg-brand-light/10 rounded-lg">
-          <div class="contact-icon text-2xl mr-4 text-brand-light">📧</div>
+        <h3 class="text-brand-primary mb-6 text-3xl font-semibold font-heading dark:text-white">Get In Touch</h3>
+        <div class="contact-item flex items-start mb-5 p-4 bg-brand-light/10 rounded-lg dark:bg-brand-light/20">
+          <div class="contact-icon text-2xl mr-4 text-brand-light w-6 text-center"><i class="fas fa-envelope"></i></div>
           <div>
-            <p class="text-gray-600 m-0 leading-relaxed"><strong>Email</strong></p>
-            <a href="mailto:omenterprise20@gmail.com" class="text-gray-600 m-0 leading-relaxed hover:text-brand-light transition-colors duration-300">omenterprise20@gmail.com</a>
+            <p class="text-gray-600 m-0 leading-relaxed dark:text-gray-300"><strong>Email</strong></p>
+            <a href="mailto:omenterprise20@gmail.com" class="text-gray-600 m-0 leading-relaxed hover:text-brand-light transition-colors duration-300 dark:text-gray-300 dark:hover:text-brand-light">omenterprise20@gmail.com</a>
           </div>
         </div>
-        <div class="contact-item flex items-start mb-5 p-4 bg-brand-light/10 rounded-lg">
-          <div class="contact-icon text-2xl mr-4 text-brand-light">📞</div>
+        <div class="contact-item flex items-start mb-5 p-4 bg-brand-light/10 rounded-lg dark:bg-brand-light/20">
+          <div class="contact-icon text-2xl mr-4 text-brand-light w-6 text-center"><i class="fas fa-phone"></i></div>
           <div>
-            <p class="text-gray-600 m-0 leading-relaxed"><strong>Phone</strong></p>
-            <a href="tel:+912249697792" class="text-gray-600 m-0 leading-relaxed hover:text-brand-light transition-colors duration-300">+91-022-49697792</a>
+            <p class="text-gray-600 m-0 leading-relaxed dark:text-gray-300"><strong>Phone</strong></p>
+            <a href="tel:+912249697792" class="text-gray-600 m-0 leading-relaxed hover:text-brand-light transition-colors duration-300 dark:text-gray-300 dark:hover:text-brand-light">+91-022-49697792</a>
           </div>
         </div>
-        <div class="contact-item flex items-start mb-5 p-4 bg-brand-light/10 rounded-lg">
-          <div class="contact-icon text-2xl mr-4 text-brand-light">📍</div>
+        <div class="contact-item flex items-start mb-5 p-4 bg-brand-light/10 rounded-lg dark:bg-brand-light/20">
+          <div class="contact-icon text-2xl mr-4 text-brand-light w-6 text-center"><i class="fas fa-map-marker-alt"></i></div>
           <div>
-            <p class="text-gray-600 m-0 leading-relaxed"><strong>Address</strong></p>
-            <p class="text-gray-600 m-0 leading-relaxed">412, B2B Agrawal Centre,<br>
+            <p class="text-gray-600 m-0 leading-relaxed dark:text-gray-300"><strong>Address</strong></p>
+            <p class="text-gray-600 m-0 leading-relaxed dark:text-gray-300">412, B2B Agrawal Centre,<br>
             D'monte lane,<br>
             Kanchpada, Malad (West),<br>
             Mumbai - 400064<br>
             Maharashtra, India</p>
           </div>
         </div>
-        <div class="contact-item flex items-start mb-5 p-4 bg-brand-light/10 rounded-lg">
-          <div class="contact-icon text-2xl mr-4 text-brand-light">🕐</div>
+        <div class="contact-item flex items-start mb-5 p-4 bg-brand-light/10 rounded-lg dark:bg-brand-light/20">
+          <div class="contact-icon text-2xl mr-4 text-brand-light w-6 text-center"><i class="fas fa-clock"></i></div>
           <div>
-            <p class="text-gray-600 m-0 leading-relaxed"><strong>Business Hours</strong></p>
-            <p class="text-gray-600 m-0 leading-relaxed">Monday - Saturday: 9:00 AM - 6:00 PM</p>
+            <p class="text-gray-600 m-0 leading-relaxed dark:text-gray-300"><strong>Business Hours</strong></p>
+            <p class="text-gray-600 m-0 leading-relaxed dark:text-gray-300">Monday - Saturday: 9:00 AM - 6:00 PM</p>
           </div>
         </div>
       </div>
-      <div class="contact-form-container bg-white p-6 md:p-10 rounded-2xl shadow-xl scroll-animate fade-in-right delay-100">
-        <h3 class="text-brand-primary mb-6 text-3xl font-semibold font-heading">Send Us A Message</h3>
-        <div class="form-success bg-green-100 text-green-700 p-4 rounded-lg mb-5 hidden" id="formSuccess">
+      <div class="contact-form-container bg-white p-6 md:p-10 rounded-2xl shadow-xl scroll-animate fade-in-right delay-100 dark:bg-gray-900">
+        <h3 class="text-brand-primary mb-6 text-3xl font-semibold font-heading dark:text-white">Send Us A Message</h3>
+        <div class="form-success bg-green-100 text-green-700 p-4 rounded-lg mb-5 hidden dark:bg-green-900 dark:text-green-200" id="formSuccess">
           ✓ Thank you! Your message has been sent successfully. We'll get back to you soon.
         </div>
         <form id="contactForm">
           <div class="form-group mb-5">
-            <label for="name" class="block mb-2 text-brand-primary font-semibold">Full Name *</label>
-            <input type="text" id="name" name="name" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20">
+            <label for="name" class="block mb-2 text-brand-primary font-semibold dark:text-gray-200">Full Name *</label>
+            <input type="text" id="name" name="name" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400">
             <span class="form-error text-red-600 text-sm mt-1 hidden">Please enter your name</span>
           </div>
           <div class="form-group mb-5">
-            <label for="email" class="block mb-2 text-brand-primary font-semibold">Email Address *</label>
-            <input type="email" id="email" name="email" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20">
+            <label for="email" class="block mb-2 text-brand-primary font-semibold dark:text-gray-200">Email Address *</label>
+            <input type="email" id="email" name="email" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400">
             <span class="form-error text-red-600 text-sm mt-1 hidden">Please enter a valid email</span>
           </div>
           <div class="form-group mb-5">
-            <label for="phone" class="block mb-2 text-brand-primary font-semibold">Phone Number *</LAbel>
-            <input type="tel" id="phone" name="phone" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20">
+            <label for="phone" class="block mb-2 text-brand-primary font-semibold dark:text-gray-200">Phone Number *</LAbel>
+            <input type="tel" id="phone" name="phone" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400">
             <span class="form-error text-red-600 text-sm mt-1 hidden">Please enter your phone number</span>
           </div>
           <div class="form-group mb-5">
-            <label for="projectType" class="block mb-2 text-brand-primary font-semibold">Project Type</label>
-            <select id="projectType" name="projectType" class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20">
+            <label for="projectType" class="block mb-2 text-brand-primary font-semibold dark:text-gray-200">Project Type</label>
+            <select id="projectType" name="projectType" class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 dark:bg-gray-800 dark:border-gray-700 dark:text-white">
               <option value="">Select project type</option>
               <option value="excavation">Excavation</option>
               <option value="foundation">Foundation Work</option>
@@ -1581,52 +1717,52 @@ DSCN0112.JPG,
             </select>
           </div>
           <div class="form-group mb-5">
-            <label for="message" class="block mb-2 text-brand-primary font-semibold">Message *</label>
-            <textarea id="message" name="message" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 resize-vertical min-h-[120px]"></textarea>
+            <label for="message" class="block mb-2 text-brand-primary font-semibold dark:text-gray-200">Message *</label>
+            <textarea id="message" name="message" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 resize-vertical min-h-[120px] dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400"></textarea>
             <span class="form-error text-red-600 text-sm mt-1 hidden">Please enter your message</span>
           </div>
-          <button type="submit" class="btn bg-gradient-to-r from-brand-light to-brand-dark text-white py-4 px-10 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full">Send Message</button>
+          <button type="submit" class="btn bg-gradient-to-r from-brand-light to-brand-dark text-white py-4 px-10 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full hover:shadow-brand-light/50">Send Message</button>
         </form>
       </div>
     </div>
 
     <!-- Google Maps -->
     <div class="map-container w-full h-96 rounded-2xl overflow-hidden shadow-xl mt-10 scroll-animate zoom-in delay-200">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.8523456789!2d72.8376!3d19.1860!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDExJzA5LjYiTiA3MsKwNTAnMTUuNCJF!5e0!3m2!1sen!2sin!4v1234567890" allowfullscreen="" loading="lazy" class="w-full h-full border-0"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!m12!1m3!1d3768.8523456789!2d72.8376!3d19.1860!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDExJzA5LjYiTiA3MsKwNTAnMTUuNCJF!5e0!3m2!1sen!2sin!4v1234567890" allowfullscreen="" loading="lazy" class="w-full h-full border-0 dark:grayscale dark:brightness-90"></iframe>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-brand-secondary text-center p-8 mt-10">
-    <p class="text-gray-300 m-0">&copy; 2025 OM ENTERPRISES - EDILITE CONSTRUCTION PVT. LTD. All Rights Reserved.</p>
+  <footer class="bg-brand-secondary text-center p-8 mt-10 dark:bg-gray-950">
+    <p class="text-gray-300 m-0 dark:text-gray-400">&copy; 2025 OM ENTERPRISES - EDILITE CONSTRUCTION PVT. LTD. All Rights Reserved.</p>
   </footer>
 
   <!-- Quote Request Modal -->
-  <div class="lightbox hidden fixed inset-0 w-full h-full bg-black/90 z-[1000] justify-center items-center p-5" id="quoteModal">
-    <div class="modal-content bg-white p-8 rounded-2xl shadow-2xl max-w-lg w-full relative animate-zoomIn" onclick="event.stopPropagation()">
+  <div class="lightbox hidden fixed inset-0 w-full h-full bg-black/90 z-[1000] justify-center items-center p-5 dark:bg-black/95" id="quoteModal">
+    <div class="modal-content bg-white p-8 rounded-2xl shadow-2xl max-w-lg w-full relative animate-zoomIn dark:bg-gray-900" onclick="event.stopPropagation()">
       <div class="lightbox-close absolute -top-4 -right-4 text-white text-4xl cursor-pointer bg-brand-light/90 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-brand-light hover:rotate-90" id="quoteModalClose">×</div>
       
-      <h3 class="text-brand-primary mb-4 text-3xl font-semibold text-center font-heading">Request a Quote</h3>
-      <p class="text-gray-600 text-center mb-6">Fill this quick form and we'll get back to you shortly.</p>
+      <h3 class="text-brand-primary mb-4 text-3xl font-semibold text-center font-heading dark:text-white">Request a Quote</h3>
+      <p class="text-gray-600 text-center mb-6 dark:text-gray-300">Fill this quick form and we'll get back to you shortly.</p>
       
-      <div class="form-success bg-green-100 text-green-700 p-4 rounded-lg mb-5 hidden" id="quoteFormSuccess">
+      <div class="form-success bg-green-100 text-green-700 p-4 rounded-lg mb-5 hidden dark:bg-green-900 dark:text-green-200" id="quoteFormSuccess">
         ✓ Thank you! Your request has been sent.
       </div>
       
       <form id="quoteFormModal">
         <div class="form-group mb-4">
-          <label for="modalName" class="block mb-2 text-brand-primary font-semibold">Full Name *</label>
-          <input type="text" id="modalName" name="name" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20">
+          <label for="modalName" class="block mb-2 text-brand-primary font-semibold dark:text-gray-200">Full Name *</label>
+          <input type="text" id="modalName" name="name" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400">
           <span class="form-error text-red-600 text-sm mt-1 hidden">Please enter your name</span>
         </div>
         <div class="form-group mb-4">
-          <label for="modalPhone" class="block mb-2 text-brand-primary font-semibold">Phone Number *</label>
-          <input type="tel" id="modalPhone" name="phone" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20">
+          <label for="modalPhone" class="block mb-2 text-brand-primary font-semibold dark:text-gray-200">Phone Number *</label>
+          <input type="tel" id="modalPhone" name="phone" required class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400">
           <span class="form-error text-red-600 text-sm mt-1 hidden">Please enter your phone number</span>
         </div>
         <div class="form-group mb-6">
-          <label for="modalProjectType" class="block mb-2 text-brand-primary font-semibold">Project Type</label>
-          <select id="modalProjectType" name="projectType" class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20">
+          <label for="modalProjectType" class="block mb-2 text-brand-primary font-semibold dark:text-gray-200">Project Type</label>
+          <select id="modalProjectType" name="projectType" class="w-full p-3 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 font-sans focus:outline-none focus:border-brand-light focus:ring-2 focus:ring-brand-light/20 dark:bg-gray-800 dark:border-gray-700 dark:text-white">
             <option value="">Select project type</option>
             <option value="excavation">Excavation</option>
             <option value="foundation">Foundation Work</option>
@@ -1636,7 +1772,7 @@ DSCN0112.JPG,
             <option value="other">Other</option>
           </select>
         </div>
-        <button type="submit" class="btn bg-gradient-to-r from-brand-light to-brand-dark text-white py-3 px-8 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full">Submit Request</button>
+        <button type="submit" class="btn bg-gradient-to-r from-brand-light to-brand-dark text-white py-3 px-8 rounded-full font-semibold uppercase tracking-wider shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full hover:shadow-brand-light/50">Submit Request</button>
       </form>
     </div>
   </div>
@@ -1750,242 +1886,6 @@ DSCN0112.JPG,
       });
     });
 
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileNav = document.getElementById('mobile-nav-links');
-    menuBtn.addEventListener('click', () => {
-      const isHidden = mobileNav.classList.contains('hidden');
-      if (isHidden) {
-        mobileNav.classList.remove('hidden');
-        menuBtn.innerHTML = '✕';
-      } else {
-        mobileNav.classList.add('hidden');
-        menuBtn.innerHTML = '☰';
-      }
-    });
-    // Close mobile menu on link click
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNav.classList.add('hidden');
-        menuBtn.innerHTML = '☰';
-      });
-    });
-
-    // Quote Modal Listeners
-    const heroQuoteButton = document.getElementById('heroQuoteButton');
-    const ctaQuoteButton = document.getElementById('ctaQuoteButton'); // NEW
-    const quoteModal = document.getElementById('quoteModal');
-    const quoteModalClose = document.getElementById('quoteModalClose');
-
-    function openQuoteModal() {
-      quoteModal.classList.add('flex');
-      quoteModal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeQuoteModal() {
-      quoteModal.classList.add('hidden');
-      quoteModal.classList.remove('flex');
-      document.body.style.overflow = 'auto';
-    }
-
-    heroQuoteButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      openQuoteModal();
-    });
-
-    ctaQuoteButton.addEventListener('click', (e) => { // NEW BLOCK
-      e.preventDefault();
-      openQuoteModal();
-    });
-
-    quoteModalClose.addEventListener('click', closeQuoteModal);
-
-    quoteModal.addEventListener('click', (e) => {
-      if (e.target.id === 'quoteModal') {
-        closeQuoteModal();
-      }
-    });
-
-    // Animated counter for statistics
-    const animateCounter = (element, target) => {
-      let current = 0;
-      const suffix = element.dataset.suffix || '';
-      const increment = target / 50;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          element.textContent = target + suffix;
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.floor(current) + suffix;
-        }
-      }, 30);
-    };
-
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const statNumbers = entry.target.querySelectorAll('.stat-number');
-          statNumbers.forEach(stat => {
-            const text = stat.textContent;
-            const hasPlus = text.includes('+');
-            const hasPercent = text.includes('%');
-            stat.dataset.suffix = hasPlus ? '+' : (hasPercent ? '%' : '');
-            const number = parseInt(text);
-            if (!isNaN(number) && !stat.classList.contains('animated')) {
-              stat.classList.add('animated');
-              animateCounter(stat, number);
-            }
-          });
-          statsObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    const statsGrid = document.querySelector('.stats-grid');
-    if (statsGrid) {
-      statsObserver.observe(statsGrid);
-    }
-
-    // FAQ Accordion
-    document.querySelectorAll('.faq-question').forEach(question => {
-      question.addEventListener('click', () => {
-        const faqItem = question.parentElement;
-        const answer = faqItem.querySelector('.faq-answer');
-        const icon = faqItem.querySelector('.faq-icon');
-        const wasActive = faqItem.classList.contains('active');
-        
-        // Close all items
-        document.querySelectorAll('.faq-item').forEach(item => {
-          item.classList.remove('active');
-          item.querySelector('.faq-answer').style.maxHeight = null;
-          item.querySelector('.faq-icon').classList.remove('rotate-180');
-        });
-        
-        // Open clicked item if it wasn't active
-        if (!wasActive) {
-          faqItem.classList.add('active');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-          icon.classList.add('rotate-180');
-        }
-      });
-    });
-
-    // Contact Form Validation and Submission
-    const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      let isValid = true;
-      const formGroups = contactForm.querySelectorAll('.form-group');
-      
-      formGroups.forEach(group => {
-        const input = group.querySelector('input, textarea, select');
-        const errorSpan = group.querySelector('.form-error');
-        
-        input.classList.remove('border-red-600');
-        errorSpan.classList.add('hidden');
-        
-        if (input.hasAttribute('required') && !input.value.trim()) {
-          input.classList.add('border-red-600');
-          errorSpan.classList.remove('hidden');
-          isValid = false;
-        }
-        
-        if (input.type === 'email' && input.value) {
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(input.Value)) {
-            input.classList.add('border-red-600');
-            errorSpan.classList.remove('hidden');
-            isValid = false;
-          }
-        }
-      });
-      
-      if (isValid) {
-        const successMessage = document.getElementById('formSuccess');
-        successMessage.classList.remove('hidden');
-        successMessage.classList.add('animate-slideDown');
-        contactForm.reset();
-        
-        setTimeout(() => {
-          successMessage.classList.add('hidden');
-          successMessage.classList.remove('animate-slideDown');
-        }, 5000);
-        
-        successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    });
-
-    // Quote Modal Form Validation
-    const quoteFormModal = document.getElementById('quoteFormModal');
-    quoteFormModal.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      let isValid = true;
-      const formGroups = quoteFormModal.querySelectorAll('.form-group');
-      
-      formGroups.forEach(group => {
-        const input = group.querySelector('input, select');
-        const errorSpan = group.querySelector('.form-error');
-        
-        input.classList.remove('border-red-600');
-        errorSpan.classList.add('hidden');
-        
-        if (input.hasAttribute('required') && !input.value.trim()) {
-          input.classList.add('border-red-600');
-          errorSpan.classList.remove('hidden');
-          isValid = false;
-        }
-      });
-      
-      if (isValid) {
-        const successMessage = document.getElementById('quoteFormSuccess');
-        successMessage.classList.remove('hidden');
-        successMessage.classList.add('animate-slideDown');
-        quoteFormModal.reset();
-        
-        setTimeout(() => {
-          successMessage.classList.add('hidden');
-          successMessage.classList.remove('animate-slideDown');
-        }, 5000);
-      }
-    });
-
-
-    // Image Lightbox Functions
-    // This is no longer tied to the *project* cards, but kept for the *equipment* section
-    function openLightbox(src, caption) {
-      document.getElementById('lightbox').classList.add('flex');
-      document.getElementById('lightbox').classList.remove('hidden');
-      document.getElementById('lightboxImg').src = src;
-      document.getElementById('lightboxCaption').textContent = caption;
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.add('hidden');
-      document.getElementById('lightbox').classList.remove('flex');
-      document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeLightbox();
-        closeProjectGallery();
-        closeQuoteModal();
-      }
-    });
-
-    // Back to Top Function
-    function scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-
     // --- Project Gallery Lightbox Logic ---
     let projectGallerySwiper = null; // Variable to hold the swiper instance
 
@@ -2074,13 +1974,46 @@ DSCN0112.JPG,
     });
   </script>
 
+  <!-- NEW: Dark Mode Toggle Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('themeToggle');
+      const htmlEl = document.documentElement;
+      const moonIcon = document.getElementById('themeIconMoon');
+      const sunIcon = document.getElementById('themeIconSun');
+
+      // Function to update icon state
+      function updateIcons() {
+        if (htmlEl.classList.contains('dark')) {
+          moonIcon.classList.add('hidden');
+          sunIcon.classList.remove('hidden');
+        } else {
+          moonIcon.classList.remove('hidden');
+          sunIcon.classList.add('hidden');
+        }
+      }
+
+      // Set initial icon state on load
+      updateIcons();
+
+      // Toggle Listener
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          if (htmlEl.classList.contains('dark')) {
+            htmlEl.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+          } else {
+            htmlEl.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+          }
+          updateIcons();
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
-
-
-
-
-
 
 
 
