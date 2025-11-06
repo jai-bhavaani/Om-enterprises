@@ -337,7 +337,7 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 <body class="font-sans bg-blueprint text-brand-text overflow-x-hidden dark:bg-black dark:text-gray-200">
 
   <!-- Navigation -->
-  <nav id="navbar" class="fixed top-0 w-full bg-brand-secondary/95 backdrop-blur-md shadow-2xl z-50 transition-all duration-300 py-4 px-6 md:px-12 dark:bg-black/95">
+  <nav id="navbar" class="fixed top-0 w-full bg-brand-secondary/95 backdrop-blur-md shadow-2xl z-50 transition-all duration-300 py-4 px-6 md:px-12 dark:bg-gray-900">
     <div class="nav-container flex justify-between items-center max-w-7xl mx-auto">
       <div class="nav-logo text-[#F4F4F4] text-2xl font-bold tracking-wider font-heading">OM ENTERPRISES</div>
       
@@ -400,18 +400,19 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     </ul>
   </nav>
 
-  <!-- Hero Section -->
-  <!-- Hero Section -->
+
+
+<!-- Hero Section -->
 <section 
-  class="hero min-h-screen flex items-center justify-center text-center relative px-5 py-24 bg-cover bg-fixed bg-center"
-  style="background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://wallpapercrafter.com/desktop2/697977-vehicle-excavators-machinery-construction-machinery.jpg');">
+  class="hero min-h-screen flex items-center justify-center text-center relative px-5 py-24 bg-cover bg-center animate-bgSlide"
+  style="background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image1.jpg');">
 
   <div 
     class="hero-content md:p-20 p-10 rounded-2xl shadow-2xl max-w-4xl animate-fadeInUp" 
-    style="background-color: rgba(30, 41, 59, 0.75); backdrop-filter: blur(6px);">
+    style="background-color:none;  opacity: 0%; backdrop-filter: blur(0px);">
 
     <img 
-      class="logo-img w-44 h-36 mb-5 rounded-lg border-4 border-[#475569] mx-auto shadow-lg"
+      class="logo-img w-44 h-36 mb-5 rounded-lg border-4 border-[#475569] mx-auto shadow-lg animate-logoPop"
       src="edilite_logo.png" 
       alt="OM Enterprises Logo"
       onerror="this.src='https://placehold.co/180x150/1E3A8A/E2E8F0?text=OM'; this.onerror=null;">
@@ -443,10 +444,221 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
   </div>
 </section>
 
+<!-- Animations -->
+<style>
+@keyframes bgSlide {
+  /* Image 1: Pan Left to Right (0% - 10%) */
+  0% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image1.jpg');
+    background-size: 120% auto; /* Zoom in to allow panning */
+    background-position: 0% 50%;
+  }
+  8% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image1.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%; /* Pan to right */
+  }
+  /* Hold last frame of image 1 */
+  10% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image1.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+
+  /* Image 2: Pan Left to Right (10% - 20%) */
+  10.01% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image2.jpg');
+    background-size: 120% auto;
+    background-position: 0% 50%;
+  }
+  18% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image2.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+  /* Hold last frame of image 2 */
+  20% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image2.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+
+  /* Image 3: Pan Left to Right (20% - 30%) */
+  20.01% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image3.jpg');
+    background-size: 120% auto;
+    background-position: 0% 50%;
+  }
+  28% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image3.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+  /* Hold last frame of image 3 */
+  30% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image3.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+
+  /* Image 4: Pan Left to Right (30% - 40%) */
+  30.01% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image4.jpg');
+    background-size: 120% auto;
+    background-position: 0% 50%;
+  }
+  38% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image4.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+  /* Hold last frame of image 4 */
+  40% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image4.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+
+  /* Image 5: Pan Left to Right (40% - 50%) */
+  40.01% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image5.jpg');
+    background-size: 120% auto;
+    background-position: 0% 50%;
+  }
+  48% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image5.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+  /* Hold last frame of image 5 */
+  50% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image5.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+
+  /* Image 6: Pan Left to Right (50% - 60%) */
+  50.01% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image6.jpg');
+    background-size: 120% auto;
+    background-position: 0% 50%;
+  }
+  58% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image6.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+  /* Hold last frame of image 6 */
+  60% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image6.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+
+  /* Image 7: Pan Left to Right (60% - 70%) */
+  60.01% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image7.jpg');
+    background-size: 120% auto;
+    background-position: 0% 50%;
+  }
+  68% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image7.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+  /* Hold last frame of image 7 */
+  70% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image7.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+
+  /* Image 8: Pan Left to Right (70% - 80%) */
+  70.01% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image8.jpg');
+    background-size: 120% auto;
+    background-position: 0% 50%;
+  }
+  78% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image8.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+  /* Hold last frame of image 8 */
+  80% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image8.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+
+  /* Image 9: Pan Left to Right (80% - 90%) */
+  80.01% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image9.jpg');
+    background-size: 120% auto;
+    background-position: 0% 50%;
+  }
+  88% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image9.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+  /* Hold last frame of image 9 */
+  90% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image9.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+
+  /* Image 10: Pan Left to Right (90% - 100%) */
+  90.01% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image10.jpg');
+    background-size: 120% auto;
+    background-position: 0% 50%;
+  }
+  98% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image10.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+  /* Hold last frame of image 10 before loop */
+  100% {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('image10.jpg');
+    background-size: 120% auto;
+    background-position: 100% 50%;
+  }
+}
+
+.animate-bgSlide {
+  animation: bgSlide 50s infinite linear; /* Changed to 50s */
+  background-size: cover; /* This will be overridden by keyframes */
+  background-position: center; /* This will be overridden by keyframes */
+  /* The 'transition' property was removed as it doesn't apply to 'background-image' changes */
+}
+
+/* Fade-in-up for hero text */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeInUp {
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+/* Logo Pop animation */
+@keyframes logoPop {
+  0% { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+  60% { opacity: 1; transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.animate-logoPop {
+  animation: logoPop 1.2s ease-out forwards;
+}
+</style>
+
 
   <!-- About Section -->
   <section id="about" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">About Us</h2>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-#6D94C5">About Us</h2>
     <div class="about-content bg-white rounded-2xl shadow-xl my-10 mx-auto p-6 md:p-12 grid md:grid-cols-2 gap-12 items-center dark:bg-gray-900">
       <div class="about-text scroll-animate fade-in-left">
         <h3 class="text-brand-primary text-3xl mb-4 font-heading dark:text-white">Building Excellence Since Years</h3>
@@ -473,8 +685,8 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
   
   <!-- Timeline Section -->
   <section id="timeline" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Company Timeline</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Our 20+ Year Journey to Excellence</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-#6D94C5">Company Timeline</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-#6D94C5">Our 20+ Year Journey to Excellence</p>
     <div class="timeline-container relative mt-10 max-w-4xl mx-auto">
         <!-- Central Line -->
         <div class="timeline-line absolute left-1/2 top-0 w-1 bg-brand-light h-full -translate-x-1/2"></div>
@@ -537,62 +749,80 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     </div>
   </section>
 
-  <!-- Client Logos Section -->
-  <!-- Client Logos Section -->
-<section id="clients" class="section py-20 px-5 bg-white dark:bg-gray-900">
+  
+<!-- Client Logos Section -->
+<section id="clients" class="section py-20 px-5 bg-white dark:bg-[var(--accent-dark)] transition-colors duration-500">
   <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold 
              font-heading uppercase tracking-wider
              after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 
              after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded
-             dark:text-white">
+             dark:text-#6D94C5">
     Trusted By
   </h2>
-  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">
+
+  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-#6D94C5">
     We are proud to partner with industry-leading developers and corporations
   </p>
 
   <div class="logo-carousel w-full max-w-7xl mx-auto overflow-hidden relative scroll-animate fade-in-up delay-200">
-    <div class="logo-carousel-track flex space-x-20 px-10">
-      
-      <!-- Logos Set 1 -->
-      <img src="lodha.png" alt="Lodha Group Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Lodha Group">
-      <img src="prestige.png" alt="Prestige Group Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Prestige Group">
-      <img src="welspun.png" alt="Welspun Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Welspun Realty">
-      <img src="piramal.png" alt="Piramal Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Piramal Realty">
-      <img src="raymond.png" alt="Raymond Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Raymond Realty">
-      <img src="billi.png" alt="B.E. Billimoria Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="B.E. Billimoria">
-      <img src="Breach.png" alt="Breach Candy Hospital Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="Breach Candy Hospital">
-      <img src="L&T.png" alt="L&T Construction Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="L&T Construction">
-      <img src="hcc.png" alt="Shapoorji Pallonji Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="HCC">
-      <img src="prime.png" alt="HCC Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="prime focus">
-      <img src="rna.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="RNA">
-      <img src="tryksha.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="tryksha">
-     <img src="jp.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
-     <img src="data.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
-     <img src="knight.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
-     <img src="Gleeds.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
-     
+    <div class="logo-carousel-track flex space-x-20 px-10 items-center animate-scroll">
+
+      <!-- Logo Set 1 -->
+      <img src="lodha.png" alt="Lodha Group Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Lodha Group">
+      <img src="prestige.png" alt="Prestige Group Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Prestige Group">
+      <img src="welspun.png" alt="Welspun Realty Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Welspun Realty">
+      <img src="piramal.png" alt="Piramal Realty Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Piramal Realty">
+      <img src="raymond.png" alt="Raymond Realty Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Raymond Realty">
+      <img src="billi.png" alt="B.E. Billimoria Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="B.E. Billimoria">
+      <img src="Breach.png" alt="Breach Candy Hospital Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Breach Candy Hospital">
+      <img src="L&T.png" alt="L&T Construction Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="L&T Construction">
+      <img src="hcc.png" alt="HCC Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="HCC">
+      <img src="prime.png" alt="Prime Focus Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Prime Focus">
+      <img src="rna.png" alt="RNA Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="RNA">
+      <img src="tryksha.png" alt="Tryksha Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Tryksha">
+      <img src="jp.png" alt="JP Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="JP">
+      <img src="data.png" alt="Data Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Data">
+      <img src="knight.png" alt="Knight Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Knight">
+      <img src="Gleeds.png" alt="Gleeds Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten" title="Gleeds">
+
       <!-- Duplicate logos for seamless infinite scroll -->
-      <img src="lodha.png" alt="Lodha Group Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
-      <img src="prestige.png" alt="Prestige Group Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
-      <img src="welspun.png" alt="Welspun Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
-      <img src="piramal.png" alt="Piramal Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
-      <img src="raymond.png" alt="Raymond Realty Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
-      <img src="billi.png" alt="B.E. Billimoria Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
-      <img src="Breach.png" alt="Breach Candy Hospital Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
-      <img src="L&T.png" alt="L&T Construction Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
-      <img src="hcc.png" alt="Shapoorji Pallonji Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
-      <img src="prime.png" alt="HCC Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100">
-      <img src="rna.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="RNA">
-      <img src="tryksha.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="tryksha">
-      <img src="jp.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
-     <img src="data.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
-     <img src="knight.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
-     <img src="Gleeds.png" alt="Mahindra Logo" class="client-logo h-16 object-contain dark:brightness-0 dark:invert dark:opacity-80 dark:hover:opacity-100" title="">
-     
+      <img src="lodha.png" alt="Lodha Group Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="prestige.png" alt="Prestige Group Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="welspun.png" alt="Welspun Realty Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="piramal.png" alt="Piramal Realty Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="raymond.png" alt="Raymond Realty Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="billi.png" alt="B.E. Billimoria Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="Breach.png" alt="Breach Candy Hospital Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="L&T.png" alt="L&T Construction Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="hcc.png" alt="HCC Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="prime.png" alt="Prime Focus Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="rna.png" alt="RNA Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="tryksha.png" alt="Tryksha Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="jp.png" alt="JP Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="data.png" alt="Data Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="knight.png" alt="Knight Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
+      <img src="Gleeds.png" alt="Gleeds Logo" class="client-logo h-16 object-contain opacity-80 hover:opacity-100 transition dark:opacity-95 dark:mix-blend-lighten">
     </div>
   </div>
 </section>
+
+<style>
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.logo-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 60s linear infinite;
+}
+
+.logo-carousel-track:hover {
+  animation-play-state: paused;
+}
+</style>
+
 
 <style>
   @keyframes scroll-x {
@@ -700,8 +930,8 @@ background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
   <!-- Projects Section -->
   <section id="projects" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Our Projects</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Trusted by leading developers and builders across India</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-#6D94C5">Our Projects</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-#6D94C5">Trusted by leading developers and builders across India</p>
     <div class="equipment-gallery grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
       
       <!-- Project 1 -->
@@ -1330,8 +1560,8 @@ DSCN0112.JPG,
   
   <!-- Team Section -->
 <section id="team" class="section py-20 px-5 max-w-7xl mx-auto">
-  <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Meet The Experts</h2>
-  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Our leadership team guiding every project to success</p>
+  <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-#6D94C5">Meet The Experts</h2>
+  <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-#6D94C5">Our leadership team guiding every project to success</p>
   
   <div class="team-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
     
@@ -1465,8 +1695,8 @@ DSCN0112.JPG,
     </div> </div> </section>
   <!-- Insights/Blog Section -->
   <section id="insights" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Industry Insights</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Sharing our expertise on excavation and construction challenges</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-#6D94C5">Industry Insights</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-#6D94C5">Sharing our expertise on excavation and construction challenges</p>
     <div class="insights-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
       
       <!-- Blog Post 1 -->
@@ -1513,8 +1743,8 @@ DSCN0112.JPG,
 
   <!-- FAQ Section -->
   <section id="faq" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Frequently Asked Questions</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Find answers to common questions about our services</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-#6D94C5">Frequently Asked Questions</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-#6D94C5">Find answers to common questions about our services</p>
     <div class="faq-container max-w-4xl mx-auto mt-10 scroll-animate fade-in-up delay-200">
       <div class="faq-item bg-white mb-4 rounded-lg overflow-hidden shadow-lg transition-all duration-300 dark:bg-gray-900">
         <div class="faq-question p-6 cursor-pointer flex justify-between items-center bg-white transition-all duration-300 font-semibold text-brand-primary hover:bg-gray-50 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
@@ -1645,8 +1875,8 @@ DSCN0112.JPG,
 
   <!-- Contact Section -->
   <section id="contact" class="section py-20 px-5 max-w-7xl mx-auto">
-    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-white">Contact Us</h2>
-    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-gray-300">Get in touch for your next project</p>
+    <h2 class="section-title text-4xl text-brand-primary text-center mb-5 relative pb-4 font-semibold font-heading uppercase tracking-wider after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r from-brand-light to-brand-dark after:rounded dark:text-#6D94C5">Contact Us</h2>
+    <p class="section-subtitle text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed scroll-animate fade-in-up delay-100 dark:text-#6D94C5">Get in touch for your next project</p>
     <div class="contact-grid grid md:grid-cols-2 gap-12 mt-10">
       <div class="contact-info scroll-animate fade-in-left delay-100">
         <h3 class="text-brand-primary mb-6 text-3xl font-semibold font-heading dark:text-white">Get In Touch</h3>
@@ -2014,7 +2244,3 @@ DSCN0112.JPG,
 
 </body>
 </html>
-
-
-
-
